@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm)",
+      "Bash(mkdir:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(find src:*)",
+      "Bash(sed -i \"s/font-\\\\['Instrument_Sans,sans-serif']/font-sans/g\" {} +)",
+      "Bash(sed -i \"s/font-\\\\['Syne']/font-sans/g\" {} +)",
+      "Bash(curl -s http://localhost:3001)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(taskkill //F //IMEX 3000)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(curl -s http://localhost:3002)",
+      "Bash(curl -s http://localhost:3001/)",
+      "Bash(mv LandingPage.tsx LandingPage.tsx.backup)",
+      "Bash(mv LandingPage.tsx LandingPage.tsx.tmp)",
+      "Bash(cp LandingPage.tsx.tmp LandingPage.tsx)"
+    ]
+  }
+}
