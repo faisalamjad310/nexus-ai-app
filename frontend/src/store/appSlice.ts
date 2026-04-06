@@ -1,24 +1,20 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-export type ActivePage = 'landing' | 'app';
-export type ActiveTab = 'chat' | 'marketplace' | 'agents' | 'research';
-
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+export type ActivePage = "landing" | "app";
+export type ActiveTab = "chat" | "marketplace" | "agents" | "research";
 interface AppState {
   activePage: ActivePage;
   activeTab: ActiveTab;
   toastMessage: string;
   toastVisible: boolean;
 }
-
 const initialState: AppState = {
-  activePage: 'landing',
-  activeTab: 'chat',
-  toastMessage: '',
+  activePage: "landing",
+  activeTab: "chat",
+  toastMessage: "",
   toastVisible: false,
 };
-
 const appSlice = createSlice({
-  name: 'app',
+  name: "app",
   initialState,
   reducers: {
     setActivePage(state, action: PayloadAction<ActivePage>) {
@@ -28,11 +24,11 @@ const appSlice = createSlice({
       state.activeTab = action.payload;
     },
     openApp(state, action: PayloadAction<ActiveTab>) {
-      state.activePage = 'app';
+      state.activePage = "app";
       state.activeTab = action.payload;
     },
     goHome(state) {
-      state.activePage = 'landing';
+      state.activePage = "landing";
     },
     showToast(state, action: PayloadAction<string>) {
       state.toastMessage = action.payload;
@@ -43,6 +39,12 @@ const appSlice = createSlice({
     },
   },
 });
-
-export const { setActivePage, setActiveTab, openApp, goHome, showToast, hideToast } = appSlice.actions;
+export const {
+  setActivePage,
+  setActiveTab,
+  openApp,
+  goHome,
+  showToast,
+  hideToast,
+} = appSlice.actions;
 export default appSlice.reducer;

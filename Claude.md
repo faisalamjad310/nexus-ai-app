@@ -1,32 +1,35 @@
 # NexusAI App
 
-This document provides unified guidance for working on the **NexusAI** full-stack application, covering both frontend and backend systems.
+Unified guidance for the **NexusAI** full-stack app (Next.js frontend + NestJS backend).
 
 ---
 
-# 🧩 Project Overview
+## Project overview
 
-## Frontend
+### Frontend
 
-* Framework: Next.js (App Router)
-* Language: TypeScript + React
-* State Management: Redux Toolkit
-* Styling: Tailwind CSS + `globals.css`
-* UI/Motion: framer-motion, react-icons
+- **Framework:** Next.js (App Router)
+- **Language:** TypeScript + React
+- **State:** Redux Toolkit (`app`, `chat`, `auth`, `models`, `modal`, `agent` slices)
+- **API client:** `frontend/src/lib/api.ts` → `NEXT_PUBLIC_API_URL` (default `http://localhost:4000/api`), `credentials: "include"`
+- **i18n:** `react-i18next` — locales `en`, `ur`, `ar` in `frontend/src/lib/translations/`; `LanguageSwitcher` + `LocalizationProvider`; **RTL** for Urdu and Arabic (`document.documentElement.dir`)
+- **Styling:** Tailwind CSS + `globals.css` (CSS variables: `--bg`, `--text`, `--accent`, etc.)
+- **UI:** framer-motion, react-icons
 
-## Backend
+### Backend
 
-* Framework: NestJS
-* Language: TypeScript
-* Database: MongoDB (Mongoose)
-* Sessions: express-session + connect-mongo
-* API Docs: Swagger (`/api/docs`)
+- **Framework:** NestJS
+- **Language:** TypeScript
+- **Database:** MongoDB (Mongoose)
+- **Sessions:** express-session + connect-mongo (cookie)
+- **Uploads:** Multer → `backend/public/uploads`, served at `/uploads` (paths in `.gitignore`)
+- **API docs:** Swagger at `/api/docs` (when enabled)
 
 ---
 
-# ⚙️ Run Commands
+## Run commands
 
-## Frontend
+### Frontend (`frontend/`)
 
 ```bash
 npm install
@@ -35,7 +38,7 @@ npm run lint
 npm run build
 ```
 
-## Backend
+### Backend (`backend/`)
 
 ```bash
 npm install
@@ -47,209 +50,127 @@ npm run test
 
 ---
 
-# 📁 Project Structure
+## Project structure (high level)
 
-## Frontend (`src/`)
-
-```
-src/
-├── app/
-│   ├── page.tsx
-│   ├── chat/
-│   ├── marketplace/
-│   ├── agents/
-│   ├── research/
-│   ├── login/
-│   └── signup/
-│
-├── components/
-│   ├── landing/
-│   ├── app/
-│   ├── auth/
-│   └── shared/
-│
-├── store/
-│   ├── appSlice.ts
-│   ├── chatSlice.ts
-│   ├── authSlice.ts
-│   └── modalSlice.ts
-```
-
----
-
-## Backend (`src/`)
+### Frontend (`frontend/src/`)
 
 ```
-src/
-├── main.ts
-├── app.module.ts
-│
-├── auth/
-│   ├── controllers/
-│   ├── services/
-│   └── schemas/
-│
-├── catalog/
-├── chat-hub/
-│
-└── data/
-    └── static-data.ts
+app/              # Routes: page, chat, marketplace, agents, research, login, signup, …
+components/
+  landing/        # Hero, Navbar, FeaturedModels, Footer (newsletter + bottom bar), …
+  app/            # AppNav, ChatHub, AgentsHub, MarketplaceView, ResearchView, …
+  auth/           # AuthShell, AuthForm, …
+  shared/         # ModelModal, Toast, LanguageSwitcher, …
+hooks/            # e.g. useSessionFromApi, useChatPersistence
+lib/              # api.ts, i18n.ts, translations/*.json
+providers/        # StoreProvider, LocalizationProvider
+store/            # appSlice, chatSlice, authSlice, modelsSlice, modalSlice, agentSlice
+```
+
+### Backend (`backend/src/`)
+
+```
+main.ts
+app.module.ts
+auth/             # signup, login, guest, session, logout
+catalog/          # labs, models, catalog agents, agent-explore, hero-onboarding, flagship-comparison, research, research/:id
+chat/             # chat message, sessions, messages (persistence + uploads)
+chat-hub/         # legacy/simple hub GET
+agents/           # user agents CRUD + run
+common/           # shared helpers/filters if present
+data/             # static-data, research-data, agent-explore-data, hero-onboarding-data, …
 ```
 
 ---
 
-# 🌐 Routing Conventions (Frontend)
+## Routing (frontend)
 
-Use URL-based navigation:
+Prefer **`router.push(...)`** for navigation; URL is source of truth.
 
-* `/`
-* `/chat`
-* `/marketplace`
-* `/agents`
-* `/research`
-* `/login`
-* `/signup`
-
-### Navigation Rule
-
-* Always prefer `router.push(...)`
-* Avoid relying only on Redux for navigation
+| Path | Purpose |
+|------|--------|
+| `/` | Landing + in-app shell (`?open=chat` etc.) |
+| `/chat`, `/chathub` | Chat Hub |
+| `/marketplace` | Marketplace |
+| `/agents` | Agents (see auth gate below) |
+| `/research`, `/research/[id]` | Research feed + detail |
+| `/login`, `/signup` | Auth (`?next=` safe app-relative path) |
 
 ---
 
-# 🔐 Authentication Flow
+## Authentication
 
-## Frontend
+### Frontend
 
-* Stored in `localStorage`:
+- **Persistence:** `localStorage` key `nexusai:user` (hydrated in `StoreProvider`; cleared on logout).
+- **`authSlice`:** `user` + `isAuthenticated`. **`setSession`:** `isAuthenticated` is **true** only when `user` exists **and** `guestMode` is not `true` — guests have a `user` but are **not** “signed in” (nav, login redirect, Agents gate).
+- **Session sync:** `useSessionFromApi` (and similar) calls `GET /api/auth/session` then `POST /api/auth/guest` when unauthenticated.
 
-  ```
-  nexusai:user
-  ```
-* Hydrated via:
+### Backend
 
-  ```
-  StoreProvider.tsx
-  ```
-* Supports `next` redirect query
-* Must validate redirect paths (app-relative only)
+| Method | Path |
+|--------|------|
+| POST | `/api/auth/signup` |
+| POST | `/api/auth/login` |
+| POST | `/api/auth/guest` |
+| GET | `/api/auth/session` |
+| POST | `/api/auth/logout` |
 
-## Backend
+Session payload uses `session.user.guestMode` for guests vs registered users.
 
-### Endpoints
+### Guest vs signed-in
 
-```
-POST   /api/auth/signup
-POST   /api/auth/login
-POST   /api/auth/guest
-GET    /api/auth/session
-POST   /api/auth/logout
-```
-
-### Session Rules
-
-* Stored in `session.user`
-* Guest mode:
-
-  ```
-  guestMode: true
-  ```
-* Auth user:
-
-  ```
-  guestMode: false
-  ```
+- Redux `isAuthenticated` is **false** for guest sessions (`guestMode: true`) so nav and auth screens can treat guests differently from registered users. Restrict sensitive routes (e.g. Agents) to signed-in users in the UI if required (`/login?next=...`).
 
 ---
 
-# 💬 Chat Hub System
+## Data & APIs
 
-## Frontend Features
+### Catalog (`/api/catalog/...`)
 
-* Text input
-* Voice input (Speech Recognition API)
-* File attachments
-* Image uploads
+Static/catalog data served from backend modules; frontend loads via `apiModels`, `apiLabs`, `apiAgents`, `apiResearch`, `apiResearchDetail`, `apiAgentExplore`, `apiHeroOnboarding`, `apiFlagshipComparison`, etc.
 
-## Message Schema
+- `GET models`, `labs`, `agents` (templates)
+- `GET agent-explore`, `hero-onboarding`, `flagship-comparison`
+- `GET research`, `research/:id`
 
-```ts
-{
-  text: string;
-  attachments?: {
-    name: string;
-    type: string;
-    size: number;
-  }[];
-}
-```
+### User agents (`/api/agents`)
 
-## UX Rules
+- CRUD + `POST /api/agents/:id/run` for agent runs.
 
-* Show file chips before sending
-* Allow removing individual files
-* Display attachments in chat bubbles
+### Chat (`/api/chat/...`)
 
-## Backend Endpoint
+- `POST message` (JSON or multipart for files)
+- Session CRUD: create/get/update/delete sessions; list by user; save/get/delete messages; etc.
 
-```
-GET /api/chat-hub
-```
+### Chat Hub (legacy)
+
+- `GET /api/chat-hub` — still present; main app chat uses **`/api/chat`** routes.
+
+### Conventions
+
+- JSON responses; stable shapes for the frontend.
+- Backend DTOs with `class-validator` where used; Swagger on new endpoints.
 
 ---
 
-# 📦 Catalog APIs
+## Chat Hub (UX)
 
-```
-GET /api/catalog/labs
-GET /api/catalog/models
-GET /api/catalog/agents
-```
-
-### Rules
-
-* Response shape must match frontend expectations
-* Do not rename existing keys
+- Text, voice, attachments; file chips before send; attachments in bubbles.
+- Chat persistence hooks use session/message APIs + `chatSlice` / local storage keys as implemented.
 
 ---
 
-# 🧠 State Management (Frontend)
+## Internationalization
 
-## Redux Slices
-
-### appSlice
-
-* Global UI state
-* Toasts
-
-### chatSlice
-
-* Messages
-* Onboarding
-* Attachments
-
-### authSlice
-
-* User session
-* Loading/error states
-
-### modalSlice
-
-* Modal visibility
+- **Locales:** `en`, `ur`, `ar` — keep keys in sync across `en.json`, `ur.json`, `ar.json`.
+- **RTL:** Urdu and Arabic set `dir="rtl"` on `<html>`.
 
 ---
 
-# 🔌 API Conventions
+## Environment variables
 
-* Base prefix: `/api`
-* Return JSON responses only
-* Keep response shapes stable
-* Use `class-validator` for DTO validation
-* Add Swagger decorators for new endpoints
-
----
-
-# 🌍 Environment Variables (Backend)
+### Backend (`backend/.env`)
 
 ```env
 PORT=4000
@@ -258,114 +179,51 @@ SESSION_SECRET=your_secret
 CORS_ORIGIN=http://localhost:3000
 ```
 
-### Notes
+- `MONGODB_URI` supported as fallback for Mongo.
 
-* `MONGODB_URI` is supported as fallback
-* Never hardcode secrets
+### Frontend
 
----
-
-# 🔒 Security Rules
-
-* Use environment variables for sensitive data
-* Cookies must be:
-
-  * `httpOnly`
-  * `secure` in production
-* Password hashing:
-
-  * Current: SHA-256
-  * Recommended upgrade: bcrypt or argon2
+- `NEXT_PUBLIC_API_URL` — API base (e.g. `http://localhost:4000/api`).
 
 ---
 
-# 🧪 Validation Checklist
+## Security notes
 
-## Frontend
-
-* [ ] `npm run lint` passes
-* [ ] Routes load correctly
-* [ ] Navbar navigation works
-* [ ] Login/signup redirect works
-* [ ] Chat send flow works
-* [ ] Attachment UX works
-
-## Backend
-
-* [ ] `npm run build` passes
-* [ ] Swagger shows all endpoints
-* [ ] MongoDB connection works
-* [ ] Sessions persist correctly
-* [ ] Auth flows (guest/login/logout) work
+- Secrets via env; no hardcoded passwords in repo.
+- Cookies: `httpOnly`; `secure` in production.
+- Password hashing: current implementation may use SHA-256 — **prefer bcrypt or argon2** for production.
 
 ---
 
-# 🧱 Development Rules
+## Validation checklist
 
-## General
+**Frontend:** `npm run lint`; routes; nav; login/signup + `next`; chat; attachments; language switch; agents gate for guests.
 
-* Keep changes minimal and scoped
-* Avoid unnecessary refactors
-* Reuse existing patterns/components
-* Maintain UI consistency
-
-## Frontend
-
-* Use strict TypeScript
-* Avoid `any` unless necessary
-* Follow existing UI patterns
-
-## Backend
-
-* Maintain API contract stability
-* Use DTO validation
-* Keep modules clean and modular
+**Backend:** `npm run build`; Swagger; MongoDB; sessions; auth + catalog + chat + agents.
 
 ---
 
-# 🤖 Agent Workflow
+## Development rules
 
-## Frontend
-
-1. frontend-architect → define approach
-2. frontend-implementer → implement changes
-3. frontend-qa → validate UX and flows
-
-## Backend
-
-1. backend-architect → design changes
-2. backend-implementer → implement APIs
-3. backend-qa → verify build, routes, sessions
+- Small, scoped changes; match existing patterns and naming.
+- Strict TypeScript; avoid unnecessary `any`.
+- Keep API contracts stable for the frontend.
 
 ---
 
-# 🔗 Notes
+## Future improvements
 
-* Frontend currently uses mock/local data
-* Backend provides static catalog + session APIs
-* Keep API logic separate from UI components
-* Avoid tight coupling between frontend and backend
-
----
-
-# 🚀 Future Improvements
-
-* Integrate real AI chat backend
-* Upgrade password hashing to bcrypt/argon2
-* Add role-based access control (RBAC)
-* Introduce frontend API service layer
-* Add end-to-end testing (E2E)
+- Stronger password hashing (bcrypt/argon2)
+- RBAC if multi-tenant
+- E2E tests
+- Newsletter backend for landing footer if productized
 
 ---
 
-# ✅ Summary
+## Summary
 
-NexusAI App is a modular full-stack system:
+NexusAI is a modular full-stack app: **frontend** (UI, i18n, Redux, `lib/api`) and **backend** (NestJS, Mongo, sessions, catalog + chat + agents). **Catalog and app data** are loaded from the **backend API** when `NEXT_PUBLIC_API_URL` points at a running server; translations stay in locale JSON files.
 
-* **Frontend** handles UI, routing, and user experience
-* **Backend** handles APIs, data, and authentication
-* Both are connected through stable API contracts
-
-Build incrementally, maintain consistency, and avoid breaking existing functionality.
+Build incrementally and avoid breaking existing API shapes or auth semantics.
 
 ---

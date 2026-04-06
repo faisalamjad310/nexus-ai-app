@@ -1,17 +1,181 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  Body,
+  Controller,
+  Post,
+  Get,
+  Put,
+  Delete,
+  Param,
+  UseInterceptors,
+  UploadedFiles,
+} from '@nestjs/common';
+import { FilesInterceptor } from '@nestjs/platform-express';
+import {
+  ApiBody,
+  ApiOperation,
+  ApiTags,
+  ApiParam,
+  ApiConsumes,
+} from '@nestjs/swagger';
 import { ChatService } from './chat.service';
+import type { MulterDiskFile } from '../common/types/multer-disk-file';
+import { chatFilesMulterOptions } from './chat-upload.storage';
 import { ChatMessageDto } from './dto/chat-message.dto';
-
+import {
+  CreateChatSessionDto,
+  UpdateChatSessionDto,
+  SaveChatMessageDto,
+} from './dto/chat-session.dto';
 @ApiTags('chat')
 @Controller('chat')
 export class ChatController {
   constructor(private readonly chatService: ChatService) {}
-
+  @Post('session/create')
+  @ApiOperation({ summary: 'Create a persisted chat session' })
+  @ApiBody({ type: CreateChatSessionDto })
+  async createSession(
+    @Body()
+    dto: CreateChatSessionDto,
+  ) {
+    const session = await this.chatService.createSession(dto);
+    return { success: true, data: session };
+  }
+  @Get('session/:sessionId')
+  @ApiOperation({ summary: 'Load one session including its messages' })
+  @ApiParam({ name: 'sessionId', type: 'string' })
+  async getSession(
+    @Param('sessionId')
+    sessionId: string,
+  ) {
+    const session = await this.chatService.getSession(sessionId);
+    return { success: true, data: session };
+  }
+  @Get('sessions/:userId')
+  @ApiOperation({ summary: 'List every session owned by a user id' })
+  @ApiParam({ name: 'userId', type: 'string' })
+  async getUserSessions(
+    @Param('userId')
+    userId: string,
+  ) {
+    const sessions = await this.chatService.getUserSessions(userId);
+    return { success: true, data: sessions };
+  }
+  @Put('session/:sessionId')
+  @ApiOperation({ summary: 'Update session title, context, or active model' })
+  @ApiParam({ name: 'sessionId', type: 'string' })
+  @ApiBody({ type: UpdateChatSessionDto })
+  async updateSession(
+    @Param('sessionId')
+    sessionId: string,
+    @Body()
+    dto: UpdateChatSessionDto,
+  ) {
+    const updated = await this.chatService.updateSession(sessionId, dto);
+    return { success: true, data: updated };
+  }
+  @Delete('session/:sessionId')
+  @ApiOperation({ summary: 'Remove one session and its messages' })
+  @ApiParam({ name: 'sessionId', type: 'string' })
+  async deleteSession(
+    @Param('sessionId')
+    sessionId: string,
+  ) {
+    const result = await this.chatService.deleteSession(sessionId);
+    return { success: true, data: result };
+  }
+  @Delete('sessions/:userId')
+  @ApiOperation({ summary: 'Delete all sessions for a user id' })
+  @ApiParam({ name: 'userId', type: 'string' })
+  async deleteAllUserSessions(
+    @Param('userId')
+    userId: string,
+  ) {
+    const result = await this.chatService.deleteAllUserSessions(userId);
+    return { success: true, data: result };
+  }
+  @Post('session/:sessionId/message')
+  @ApiOperation({ summary: 'Append a user or assistant message to a session' })
+  @ApiParam({ name: 'sessionId', type: 'string' })
+  @ApiBody({ type: SaveChatMessageDto })
+  async saveMessage(
+    @Param('sessionId')
+    sessionId: string,
+    @Body()
+    dto: SaveChatMessageDto,
+  ) {
+    const message = await this.chatService.saveMessage(sessionId, dto);
+    return { success: true, data: message };
+  }
+  @Get('session/:sessionId/messages')
+  @ApiOperation({ summary: 'Fetch all messages for a session id' })
+  @ApiParam({ name: 'sessionId', type: 'string' })
+  async getSessionMessages(
+    @Param('sessionId')
+    sessionId: string,
+  ) {
+    const messages = await this.chatService.getSessionMessages(sessionId);
+    return { success: true, data: messages };
+  }
+  @Delete('message/:messageId/:sessionId')
+  @ApiOperation({ summary: 'Delete one message within a session' })
+  @ApiParam({ name: 'messageId', type: 'string' })
+  @ApiParam({ name: 'sessionId', type: 'string' })
+  async deleteMessage(
+    @Param('messageId')
+    messageId: string,
+    @Param('sessionId')
+    sessionId: string,
+  ) {
+    const result = await this.chatService.deleteMessage(messageId, sessionId);
+    return { success: true, data: result };
+  }
   @Post('message')
-  @ApiOperation({ summary: 'Send a message and receive smart model recommendations' })
-  @ApiBody({ type: ChatMessageDto })
-  sendMessage(@Body() dto: ChatMessageDto) {
-    return this.chatService.reply(dto.message, dto.context);
+  @UseInterceptors(FilesInterceptor('files', 10, chatFilesMulterOptions()))
+  @ApiOperation({
+    summary: 'Send a message and get model recommendations (optional files)',
+    description:
+      'Multipart form: text body plus optional context JSON and up to 10 files; stored server-side for recommendations.',
+  })
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    description: 'Message data with optional file attachments',
+    schema: {
+      type: 'object',
+      properties: {
+        message: {
+          type: 'string',
+          description: 'The text message content',
+          example: 'I need a model that helps with TypeScript refactors.',
+        },
+        context: {
+          type: 'object',
+          description: 'Optional context for model recommendations',
+          properties: {
+            goal: { type: 'string', example: 'Code & Dev' },
+            audience: { type: 'string', example: 'Startup team' },
+            level: { type: 'string', example: 'Senior engineer' },
+            budget: { type: 'string', example: 'Under $100/mo' },
+          },
+        },
+        files: {
+          type: 'array',
+          description: 'Optional file attachments (max 10 files, 10MB each)',
+          items: {
+            type: 'string',
+            format: 'binary',
+            description: 'File to upload',
+          },
+        },
+      },
+      required: ['message'],
+    },
+  })
+  sendMessage(
+    @Body()
+    dto: ChatMessageDto,
+    @UploadedFiles()
+    files?: MulterDiskFile[],
+  ) {
+    return this.chatService.reply(dto.message, dto.context, files);
   }
 }

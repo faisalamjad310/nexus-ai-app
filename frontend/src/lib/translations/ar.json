@@ -1,0 +1,435 @@
+{
+  "common": {
+    "chat_hub": "مركز الدردشة",
+    "marketplace": "السوق",
+    "discover_new": "اكتشف الجديد",
+    "agents": "الوكلاء",
+    "sign_in": "تسجيل الدخول",
+    "get_started": "ابدأ",
+    "start": "ابدأ",
+    "go_home": "NexusAI",
+    "tooltips": {
+      "voice_record": "تسجيل صوتي",
+      "voice_typing": "إدخال صوتي",
+      "attach_file": "إرفاق ملف",
+      "attach_image": "إرفاق صورة",
+      "search": "بحث",
+      "send_message": "إرسال الرسالة",
+      "active_model": "النموذج النشط"
+    }
+  },
+  "landing": {
+    "hero_headline_l1": "اعثر على",
+    "hero_headline_highlight": "نموذج الذكاء الاصطناعي",
+    "hero_headline_l2": "المناسب مع",
+    "hero_headline_l3": "اكتشاف موجّه",
+    "hero_subtitle": "لا تحتاج لمعرفة مسبقة بالذكاء الاصطناعي. انقر في المربع أدناه — وسنكمل معًا. ✨",
+    "search_placeholder": "ابحث عن نماذج أو صف حالة الاستخدام...",
+    "search_button": "لننطلق",
+    "chips": {
+      "coding": "🧠 الأفضل للبرمجة",
+      "vision": "💰 أرخص رؤية",
+      "fastest": "⚡ أسرع مساعد",
+      "opensource": "🔬 مفتوح المصدر",
+      "compare": "📊 GPT مقابل Claude"
+    },
+    "actions": {
+      "chat": "دردش مع أي نموذج",
+      "compare": "قارن النماذج",
+      "build": "ابنِ وكيلاً",
+      "analyse": "حلّل البيانات",
+      "generate": "أنشئ صورًا",
+      "explore": "استكشف المزيد"
+    },
+    "stats": {
+      "models": "نماذج الذكاء الاصطناعي",
+      "labs": "مختبرات الذكاء الاصطناعي",
+      "devs": "مطورون"
+    },
+    "featured_title": "نماذج مميزة",
+    "featured_view_all": "عرض الكل ←",
+    "labs_title": "تصفح حسب المختبر",
+    "labs_subtitle": "تصفح نماذج من أكثر من 28 مختبرًا رائدًا",
+    "labs_explore": "استكشف ←",
+    "comparison_title": "مقارنة النماذج الرائدة",
+    "comparison_subtitle": "عرض جنبًا إلى جنب للنماذج الرائدة عبر المختبرات. أسعار الإدخال/الإخراج لكل مليون رمز.",
+    "comparison_cta": "قارن الكل ←",
+    "comparison_col_model": "النموذج",
+    "comparison_col_lab": "المختبر",
+    "comparison_col_context": "السياق",
+    "comparison_col_input": "إدخال $/1M",
+    "comparison_col_output": "إخراج $/1M",
+    "comparison_col_multimodal": "متعدد الوسائط",
+    "comparison_col_speed": "السرعة",
+    "comparison_col_best": "الأفضل لـ",
+    "catalog_error": "تعذر تحميل الكتالوج. تأكد أن الخادم يعمل (NEXT_PUBLIC_API_URL).",
+    "comparison_error": "تعذر تحميل بيانات المقارنة. تحقق أن واجهة البرمجة تعمل.",
+    "banner_find": "اعثر على نموذج الذكاء الاصطناعي المناسب",
+    "banner_questions": "أجب عن 4 أسئلة سريعة واحصل على توصية مخصصة في أقل من 60 ثانية.",
+    "banner_cta": "احصل على توصيات مخصصة ←",
+    "footer": {
+      "description": "مركز نماذج الذكاء الاصطناعي الموثوق به من قبل أكثر من 50,000 مطور حول العالم.",
+      "copyright": "© 2026 NexusAI. جميع الحقوق محفوظة.",
+      "tagline": "صُمم للمطورين، من المطورين.",
+      "newsletter_kicker": "كن متقدمًا على المنافسة",
+      "newsletter_title_1": "نماذج جديدة كل أسبوع.",
+      "newsletter_title_2": "لا تفوت أي إصدار.",
+      "newsletter_desc": "احصل على ملخص أسبوعي منتقى: إصدارات نماذج جديدة، مقارنات معايير، تغييرات أسعار، ونصائح هندسة الموجهات — مباشرة إلى بريدك.",
+      "email_placeholder": "بريدك@email.com",
+      "subscribe_cta": "اشترك مجانًا ←",
+      "newsletter_trust": "لا رسائل مزعجة. إلغاء الاشتراك في أي وقت. موثوق به من أكثر من 82 ألف مطور.",
+      "newsletter_thanks": "أنت على القائمة. راجع بريدك قريبًا.",
+      "bar_brand": "سوق نماذج NexusAI",
+      "bar_models": "النماذج",
+      "bar_research": "البحث",
+      "bar_privacy": "الخصوصية",
+      "bar_terms": "الشروط",
+      "sections": {
+        "product": "المنتج",
+        "models": "النماذج",
+        "resources": "الموارد",
+        "company": "الشركة"
+      },
+      "links": {
+        "marketplace": "السوق",
+        "chat_hub": "مركز الدردشة",
+        "agent_builder": "منشئ الوكلاء",
+        "pricing": "الأسعار",
+        "documentation": "التوثيق",
+        "api": "واجهة برمجة التطبيقات",
+        "blog": "المدونة",
+        "about": "من نحن",
+        "careers": "الوظائف",
+        "contact": "اتصل بنا"
+      }
+    }
+  },
+  "chat": {
+    "sidebar": {
+      "models": "النماذج",
+      "search": "بحث...",
+      "loading": "جاري التحميل...",
+      "create_agent": "إنشاء وكيل",
+      "switched_to_toast": "تم التبديل إلى {{name}}"
+    },
+    "right_panel": {
+      "active_model": "النموذج النشط",
+      "rating": "التقييم",
+      "reviews": "المراجعات",
+      "price": "السعر",
+      "details": "التفاصيل",
+      "how_to_use": "طريقة الاستخدام",
+      "quick_actions": "إجراءات سريعة",
+      "refine_setup": "حسّن الإعداد",
+      "latest_updates": "آخر التحديثات",
+      "actions": {
+        "marketplace": "🛍 تصفح السوق",
+        "build_agent": "🤖 أنشئ وكيلاً",
+        "research_feed": "🔬 موجز البحث"
+      },
+      "refine": {
+        "faster_cheaper": "أسرع وأرخص",
+        "accuracy_quality": "زيادة الدقة والجودة",
+        "api_integration": "إضافة تكامل أداة/واجهة",
+        "scale_production": "التوسع للإنتاج"
+      }
+    },
+    "area": {
+      "welcome_title": "مرحبًا بك في مركز NexusAI",
+      "welcome_subtitle": "سأساعدك في العثور على نموذج الذكاء الاصطناعي المناسب في أقل من 60 ثانية. ما حالة الاستخدام الأساسية؟",
+      "placeholder": "...رسالة إلى NexusAI",
+      "goals": {
+        "chat": "الدردشة والمساعدون",
+        "code": "البرمجة والتطوير",
+        "image": "توليد الصور",
+        "data": "تحليل البيانات",
+        "writing": "كتابة المحتوى",
+        "agents": "وكلاء الذكاء الاصطناعي"
+      },
+      "onboarding": {
+        "audience": {
+          "title": "من جمهورك الأساسي؟",
+          "personal": "استخدام شخصي",
+          "business": "عمل صغير",
+          "enterprise": "مؤسسة",
+          "academic": "بحث / أكاديمي"
+        },
+        "level": {
+          "title": "ما مستوى خبرتك مع واجهات الذكاء الاصطناعي؟",
+          "beginner": "مبتدئ تمامًا",
+          "experience": "بعض الخبرة",
+          "intermediate": "مطور متوسط",
+          "expert": "خبير / إنتاج"
+        },
+        "budget": {
+          "title": "تقريبًا انتهينا! ما ميزانيتك الشهرية لخدمات الذكاء الاصطناعي؟",
+          "free": "مجاني فقط",
+          "under50": "أقل من 50$/شهر",
+          "under500": "50–500$/شهر",
+          "over500": "أكثر من 500$/شهر"
+        },
+        "completion": "بناءً على ملفك، إليك أفضل توصياتي المخصصة:"
+      },
+      "suggestions": {
+        "product_desc": "اكتب وصف منتج",
+        "summarise": "لخص هذا المستند",
+        "pro_email": "صاغ بريدًا مهنيًا",
+        "content_calendar": "أنشئ تقويم محتوى"
+      },
+      "modes": {
+        "learn": "تعلم",
+        "create": "إنشاء",
+        "analyze": "تحليل",
+        "code": "برمجة",
+        "usecases": "حالات الاستخدام"
+      }
+    }
+  },
+  "auth": {
+    "panel": {
+      "headline": "ابنِ بذكاء أكبر مع وكلاء الذكاء الاصطناعي",
+      "sub": "اكتشف وقارن ونشر أكثر من 220 نموذجًا من مختبرات رائدة — مركز واحد لكل سير العمل."
+    },
+    "form": {
+      "tab_signin": "تسجيل الدخول",
+      "tab_signup": "إنشاء حساب",
+      "signin_title": "تسجيل الدخول",
+      "signup_title": "أنشئ حسابك",
+      "signin_subtitle": "مرحبًا بعودتك — تابع من حيث توقفت.",
+      "signup_subtitle": "انضم إلى المركز وافتح الدردشات والوكلاء المحفوظين.",
+      "signin_welcome": "مرحبًا بعودتك",
+      "signin_lead": "سجّل الدخول إلى حساب NexusAI للمتابعة.",
+      "signup_lead": "أنشئ حساب NexusAI للبدء.",
+      "labels": {
+        "name": "الاسم",
+        "email": "البريد الإلكتروني",
+        "email_address": "عنوان البريد",
+        "password": "كلمة المرور"
+      },
+      "placeholders": {
+        "name": "فاطمة أحمد",
+        "email": "you@company.com",
+        "password": "••••••••",
+        "password_signin": "أدخل كلمة المرور"
+      },
+      "buttons": {
+        "wait": "يرجى الانتظار…",
+        "signin": "تسجيل الدخول",
+        "signup": "إنشاء حساب"
+      },
+      "forgot_password": "نسيت كلمة المرور؟",
+      "or_continue": "أو تابع بـ",
+      "social_soon": "قريبًا — استخدم البريد وكلمة المرور الآن.",
+      "footer_no_account": "ليس لديك حساب؟",
+      "footer_create_one": "أنشئ حسابًا",
+      "footer_have_account": "لديك حساب بالفعل؟",
+      "footer_sign_in": "تسجيل الدخول",
+      "links": {
+        "new_here": "جديد هنا؟",
+        "already_account": "لديك حساب بالفعل؟",
+        "create_account": "إنشاء حساب",
+        "sign_in": "تسجيل الدخول"
+      }
+    },
+    "validation": {
+      "email": "يرجى إدخال بريد إلكتروني صالح.",
+      "password_min": "يجب أن تكون كلمة المرور 6 أحرف على الأقل.",
+      "name": "يرجى إدخال اسمك."
+    },
+    "error": {
+      "generic": "حدث خطأ ما. حاول مرة أخرى."
+    },
+    "features": {
+      "models_title": "أكثر من 220 نموذجًا",
+      "models_desc": "الوصول إلى أحدث النماذج من OpenAI وClaude وGemini وغيرها",
+      "deploy_title": "نشر فوري",
+      "deploy_desc": "ابدأ باستخدام أي نموذج في ثوانٍ دون تعقيد",
+      "compare_title": "مقارنات ذكية",
+      "compare_desc": "قارن النماذج جنبًا إلى جنب للعثور على الأنسب",
+      "build_title": "منشئ الوكلاء",
+      "build_desc": "أنشئ وكلاء ذكاء اصطناعي قويين بتصميم مرئي لسير العمل"
+    },
+    "testimonial": {
+      "quote": "قلّصت NexusAI وقت تقييم نماذجنا من أسابيع إلى ساعات. وحدها ميزة المقارنة وفّرت علينا آلافًا في التطوير.",
+      "author": "سارة تشين",
+      "role": "رئيسة الذكاء الاصطناعي، Vercel"
+    },
+    "badges": {
+      "signin_title": "مرحبًا بعودتك إلى المركز",
+      "signup_title": "انضم إلى أكثر من 50,000 مطور"
+    },
+    "leftpanel": {
+      "signin_headline": "نماذج الذكاء الاصطناعي في انتظارك.",
+      "signin_desc": "الوصول إلى جميع نماذجك المفضلة والدردشات المحفوظة وإعدادات الوكلاء بنقرة واحدة.",
+      "signup_headline": "الطريقة الأذكى للإطلاق مع الذكاء الاصطناعي.",
+      "signup_desc": "اكتشف وقارن ونشر أكثر من 220 نموذجًا من أفضل المختبرات في العالم — كل ذلك في منصة واحدة."
+    },
+    "builder": {
+      "cancel": "إلغاء",
+      "back": "رجوع",
+      "save_test": "حفظ واختبار",
+      "saving": "جاري الحفظ…",
+      "deploy_agent": "نشر الوكيل",
+      "deploying": "جاري النشر…",
+      "test_failed": "فشل الاختبار — احفظ الوكيل أولًا.",
+      "save_failed": "فشل حفظ الوكيل. حاول مرة أخرى.",
+      "agent_deployed": "تم نشر الوكيل بنجاح!",
+      "deploy_failed": "فشل النشر. حاول مرة أخرى."
+    }
+  },
+  "modal": {
+    "tabs": {
+      "overview": "نظرة عامة",
+      "how_to_use": "طريقة الاستخدام",
+      "pricing": "الأسعار",
+      "prompt_guide": "دليل الموجهات",
+      "agents": "الوكلاء",
+      "reviews": "المراجعات",
+      "create_agent": "إنشاء وكيل"
+    },
+    "configure_agent": "تهيئة وكيل جديد",
+    "developing_agent_using": "تطوير وكيل باستخدام"
+  },
+  "modelCard": {
+    "try": "جرب ←"
+  },
+  "agents": {
+    "header_title": "منشئ الوكلاء",
+    "header_subtitle": "أنشئ وكلاء ذكاء اصطناعي قويين باستخدام أي نموذج.",
+    "sidebar_blurb": "أنشئ وكلاء قويين بأي نموذج. اختر قالبًا أو ابدأ من الصفر.",
+    "button_new_agent": "وكيل جديد",
+    "hero_prefix": "الوكيل يعمل",
+    "hero_accent": "من أجلك.",
+    "hero_sub": "وكيلك يتولى كل شيء من البداية للنهاية.",
+    "search_placeholder": "بماذا نعمل بعد ذلك؟",
+    "search_send": "إرسال إلى المركز",
+    "view_all_suggestions": "عرض كل الاقتراحات",
+    "shuffle": "خلط",
+    "my_agents": "وكلائي",
+    "agent_library": "مكتبة الوكلاء",
+    "library_sub": "اختر وكيلًا افتراضيًا أو ابنِ وكيلك الخاص",
+    "default_agents": "الوكلاء الافتراضيون",
+    "create_custom": "إنشاء وكيل مخصص",
+    "no_agents_title": "لا يوجد وكلاء بعد.",
+    "no_agents_hint": "أنشئ وكيلك الأول للبدء!",
+    "delete_agent": "حذف",
+    "agent_deleted": "تمت إزالة الوكيل",
+    "edit": "تعديل",
+    "use_case_library": "مكتبة حالات الاستخدام",
+    "apps_count": "{{count}} فكرة",
+    "banner_title": "لست متأكدًا من أين تبدأ؟",
+    "banner_description": "دردش مع دليلنا الذكي — صف وكيلك واحصل على خطة إعداد مخصصة.",
+    "banner_cta": "اسأل المركز ←",
+    "templates_label": "قوالب الوكلاء",
+    "explore": {
+      "tabs": {
+        "use_cases": "حالات الاستخدام",
+        "build_business": "ابنِ عملًا",
+        "learn": "ساعدني أتعلم",
+        "monitor": "راقب الوضع",
+        "research": "بحث",
+        "create": "إنشاء محتوى",
+        "analyze": "تحليل وبحث"
+      }
+    },
+    "chat": {
+      "back_agents": "الوكلاء",
+      "live": "مباشر",
+      "draft": "مسودة",
+      "meta_tools": "الأدوات: {{tools}}",
+      "tools_none": "لا شيء",
+      "meta_memory": "الذاكرة: قصيرة المدى",
+      "settings": "الإعدادات",
+      "try_label": "جرب:",
+      "try_1": "ماذا يمكنك أن تفعل؟",
+      "try_2": "أعطني ملخصًا سريعًا",
+      "try_3": "أرني مثالًا",
+      "try_4": "كيف تتعامل مع الأخطاء؟",
+      "try_5": "ما حدودك؟",
+      "welcome": "👋 مرحبًا! أنا {{name}} — وكيل ذكاء اصطناعي قوي. كيف يمكنني مساعدتك اليوم؟",
+      "input_placeholder": "صف مشروعك، اسأل سؤالًا، أو قل مرحبًا فقط — أنا هنا للمساعدة…",
+      "thinking": "جاري التفكير…",
+      "send_error": "تعذر الوصول إلى الوكيل. حاول مرة أخرى.",
+      "error_reply": "عذرًا — لم أتمكن من إكمال الطلب. حاول مرة أخرى.",
+      "coming_soon": "قريبًا",
+      "video": "فيديو",
+      "palette": "نصائح الموجهات",
+      "footer_preview": "معاينة مباشرة لوكيلك المنشور.",
+      "edit_config": "تعديل التهيئة ←",
+      "avatar_user": "م",
+      "attachments_only": "(أرسل المستخدم مرفقات فقط.)",
+      "prompt_voice_note": "أرسل المستخدم تسجيلًا صوتيًا. أجب بشكل مفيد كما لو سأل شفهيًا؛ أقر التسجيل الصوتي.",
+      "prompt_video_note": "أرفق المستخدم فيديو. اعترف به وقدّم مساعدة للمتابعات النموذجية.",
+      "file_read_error": "تعذر قراءة المحتوى",
+      "prompt_image_note": "أرفق المستخدم صورة. استنتج ما تستطيع من اسم الملف أو اعرض المساعدة بعد وصفه.",
+      "file_too_large": "\"{{name}}\" كبير جدًا (حد أقصى 10 ميجابايت).",
+      "max_attachments": "يمكنك إرفاق ما يصل إلى {{n}} ملفات.",
+      "record_unsupported": "التسجيل غير مدعوم في هذا المتصفح.",
+      "recorder_unsupported": "MediaRecorder غير متوفر.",
+      "voice_saved_attach": "تمت إضافة المقطع الصوتي كمرفق.",
+      "record_failed": "فشل التسجيل.",
+      "recording_hint": "جاري التسجيل… اضغط مرة أخرى للإيقاف.",
+      "mic_denied": "تم رفض إذن الميكروفون.",
+      "mic_missing": "لم يُعثر على ميكروفون.",
+      "mic_error": "تعذر الوصول إلى الميكروفون.",
+      "recording_stopped": "توقف التسجيل.",
+      "voice_type_unsupported": "الإدخال الصوتي غير مدعوم في هذا المتصفح.",
+      "voice_typing_on": "الإدخال الصوتي مفعّل — تحدث بوضوح.",
+      "voice_typing_fail": "تعذر بدء الإدخال الصوتي.",
+      "n_files_attached": "{{count}} ملف(ات) مرفقة",
+      "stop_recording": "إيقاف التسجيل",
+      "prompt_tip_toast": "كن محددًا: الهدف والجمهور وأي قيود. أرفق ملفات للسياق."
+    },
+    "steps": {
+      "template": "قالب",
+      "template_desc": "اختر أو أنشئ قالب وكيل",
+      "configure": "تهيئة",
+      "configure_desc": "إعداد الأدوات والمعرفة والسلوك",
+      "test": "اختبار",
+      "test_desc": "اختبر وكيلك باستعلامات نموذجية",
+      "deploy": "نشر",
+      "deploy_desc": "انشر وراقب وكيلك"
+    },
+    "tools": {
+      "web_search": "بحث الويب",
+      "web_search_desc": "ابحث في الإنترنت عن معلومات فورية",
+      "code_interpreter": "مفسّر الشيفرة",
+      "code_interpreter_desc": "تنفيذ واختبار مقاطع الشيفرة",
+      "file_access": "الوصول للملفات",
+      "file_access_desc": "قراءة ومعالجة الملفات المرفوعة",
+      "api_calls": "استدعاءات API",
+      "api_calls_desc": "التكامل مع واجهات خارجية",
+      "memory": "الذاكرة",
+      "memory_desc": "تخزين وسياق المحادثة",
+      "scheduler": "الجدولة",
+      "scheduler_desc": "جدولة مهام وسير عمل متكررة"
+    }
+  },
+  "marketplace": {
+    "header": "سوق الذكاء الاصطناعي",
+    "search_placeholder": "ابحث عن النماذج...",
+    "filters": {
+      "all": "الكل",
+      "language": "اللغة",
+      "vision": "الرؤية",
+      "code": "الشيفرة",
+      "image_gen": "توليد الصور",
+      "audio": "الصوت",
+      "opensource": "مفتوح المصدر"
+    },
+    "coming_soon": {
+      "voice": "بحث صوتي — قريبًا",
+      "upload": "رفع ملف — قريبًا"
+    }
+  },
+  "research": {
+    "header_title": "موجز أبحاث الذكاء الاصطناعي",
+    "header_subtitle": "أحدث الأوراق والإصدارات والاختراقات.",
+    "live_updates": "تحديثات مباشرة",
+    "discuss_in_chat": "ناقش في الدردشة",
+    "newsletter_title": "كن متقدمًا على الذكاء الاصطناعي",
+    "newsletter_desc": "ملخص أسبوعي لأهم أبحاث الذكاء الاصطناعي.",
+    "newsletter_placeholder": "بريدك@email.com",
+    "newsletter_subscribe": "اشترك"
+  }
+}

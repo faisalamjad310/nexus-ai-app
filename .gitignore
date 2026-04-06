@@ -10,3 +10,11 @@ backend/build/
 backend/dist/
 frontend/.next/
 frontend/.next/cache/
+
+# Local debug logs (do not commit)
+debug.log
+**/debug.log
+
+# Uploaded files (chat attachments, etc.)
+backend/public/uploads/
+backend/public/upload/
