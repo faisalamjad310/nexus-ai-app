@@ -7,6 +7,7 @@ import "@/lib/i18n";
 const LANGUAGES = [
   { code: "en", name: "English", flag: "🇺🇸" },
   { code: "ur", name: "اردو", flag: "🇵🇰" },
+  { code: "ar", name: "العربية", flag: "🇸🇦" },
 ];
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation();
@@ -17,7 +18,8 @@ export default function LanguageSwitcher() {
   const toggleLanguage = (code: string) => {
     i18n.changeLanguage(code);
     setIsOpen(false);
-    document.documentElement.dir = code === "ur" ? "rtl" : "ltr";
+    document.documentElement.dir =
+      code === "ur" || code === "ar" ? "rtl" : "ltr";
     document.documentElement.lang = code;
   };
   useEffect(() => {

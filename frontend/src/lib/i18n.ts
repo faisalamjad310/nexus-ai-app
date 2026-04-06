@@ -3,6 +3,7 @@ import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import enTranslation from "./translations/en.json";
 import urTranslation from "./translations/ur.json";
+import arTranslation from "./translations/ar.json";
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -14,7 +15,13 @@ i18n
       ur: {
         translation: urTranslation,
       },
+      ar: {
+        translation: arTranslation,
+      },
     },
+    supportedLngs: ["en", "ur", "ar"],
+    nonExplicitSupportedLngs: true,
+    load: "languageOnly",
     fallbackLng: "en",
     interpolation: {
       escapeValue: false,

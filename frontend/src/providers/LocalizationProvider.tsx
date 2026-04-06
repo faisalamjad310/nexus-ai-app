@@ -12,7 +12,8 @@ export default function LocalizationProvider({
     const updateAttributes = () => {
       const lang = i18n.language || "en";
       document.documentElement.lang = lang;
-      document.documentElement.dir = lang === "ur" ? "rtl" : "ltr";
+      document.documentElement.dir =
+        lang === "ur" || lang.startsWith("ar") ? "rtl" : "ltr";
     };
     updateAttributes();
     i18n.on("languageChanged", updateAttributes);
