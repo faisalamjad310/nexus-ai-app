@@ -1,5 +1,7 @@
 # NexusAI App
 
+**Author:** Hafiz Faisal
+
 Unified guidance for the **NexusAI** full-stack app (Next.js frontend + NestJS backend).
 
 ---
@@ -22,7 +24,7 @@ Unified guidance for the **NexusAI** full-stack app (Next.js frontend + NestJS b
 - **Language:** TypeScript
 - **Database:** MongoDB (Mongoose)
 - **Sessions:** express-session + connect-mongo (cookie)
-- **Uploads:** Multer → `backend/public/uploads`, served at `/uploads` (paths in `.gitignore`)
+- **Uploads:** Multer → `backend/public/uploads`, served at `/uploads` (ignored by git)
 - **API docs:** Swagger at `/api/docs` (when enabled)
 
 ---
@@ -48,6 +50,8 @@ npm run lint
 npm run test
 ```
 
+Run **both** during development (API on port 4000, Next.js default 3000).
+
 ---
 
 ## Project structure (high level)
@@ -58,10 +62,10 @@ npm run test
 app/              # Routes: page, chat, marketplace, agents, research, login, signup, …
 components/
   landing/        # Hero, Navbar, FeaturedModels, Footer (newsletter + bottom bar), …
-  app/            # AppNav, ChatHub, AgentsHub, MarketplaceView, ResearchView, …
+  app/            # AppNav, ChatHub, AgentsHub, AgentsAuthGate, MarketplaceView, ResearchView, …
   auth/           # AuthShell, AuthForm, …
   shared/         # ModelModal, Toast, LanguageSwitcher, …
-hooks/            # e.g. useSessionFromApi, useChatPersistence
+hooks/            # useSessionFromApi, useChatPersistence, …
 lib/              # api.ts, i18n.ts, translations/*.json
 providers/        # StoreProvider, LocalizationProvider
 store/            # appSlice, chatSlice, authSlice, modelsSlice, modalSlice, agentSlice
@@ -92,7 +96,7 @@ Prefer **`router.push(...)`** for navigation; URL is source of truth.
 | `/` | Landing + in-app shell (`?open=chat` etc.) |
 | `/chat`, `/chathub` | Chat Hub |
 | `/marketplace` | Marketplace |
-| `/agents` | Agents (see auth gate below) |
+| `/agents` | Agents (signed-in only; see below) |
 | `/research`, `/research/[id]` | Research feed + detail |
 | `/login`, `/signup` | Auth (`?next=` safe app-relative path) |
 
@@ -100,11 +104,18 @@ Prefer **`router.push(...)`** for navigation; URL is source of truth.
 
 ## Authentication
 
+### Session contract (`GET /api/auth/session`)
+
+- **Response shape:** `{ authenticated: boolean, user: SessionUser | null }`
+- **`authenticated`** means a **registered** account session (`session.user` exists **and** `user.guestMode` is not `true`).
+- **Guest** sessions still return **`user`** with `guestMode: true`, but **`authenticated: false`**. The frontend must not treat “has user” as “logged in” without checking `guestMode`.
+
 ### Frontend
 
 - **Persistence:** `localStorage` key `nexusai:user` (hydrated in `StoreProvider`; cleared on logout).
-- **`authSlice`:** `user` + `isAuthenticated`. **`setSession`:** `isAuthenticated` is **true** only when `user` exists **and** `guestMode` is not `true` — guests have a `user` but are **not** “signed in” (nav, login redirect, Agents gate).
-- **Session sync:** `useSessionFromApi` (and similar) calls `GET /api/auth/session` then `POST /api/auth/guest` when unauthenticated.
+- **`authSlice`:** `setSession` sets **`isAuthenticated`** only when `user` exists **and** `guestMode` is not `true` (guests are not “signed in”).
+- **`useSessionFromApi`:** Calls `GET /api/auth/session`, then **preserves `user.guestMode` from the API**. If there is no session, calls `POST /api/auth/guest`. Guest users must be dispatched with `guestMode: true` so Redux stays correct.
+- **`StoreProvider`:** On load, rehydrates from `localStorage` and **infers guest** (`guestMode`, or `id` starting with `guest_`, or `@guest.local` email) so stale keys do not mark guests as signed-in.
 
 ### Backend
 
@@ -116,11 +127,17 @@ Prefer **`router.push(...)`** for navigation; URL is source of truth.
 | GET | `/api/auth/session` |
 | POST | `/api/auth/logout` |
 
-Session payload uses `session.user.guestMode` for guests vs registered users.
+Session payload uses `session.user.guestMode` for guests vs registered users (`createGuestSession` sets `guestMode: true`).
 
-### Guest vs signed-in
+### Agents page (UI guard)
 
-- Redux `isAuthenticated` is **false** for guest sessions (`guestMode: true`) so nav and auth screens can treat guests differently from registered users. Restrict sensitive routes (e.g. Agents) to signed-in users in the UI if required (`/login?next=...`).
+- **`AgentsAuthGate`** (`components/app/agents/AgentsAuthGate.tsx`) wraps **`AgentsHub`** in `AppWorkspace` and in the home app shell (`page.tsx`).
+- Only **`isAuthenticated`** users see the Agents UI; guests and logged-out users are redirected to **`/login?next=/agents`** (with loading/redirect copy from i18n `agents.auth_*`).
+- **Server-side:** protect `/api/agents/*` for production if agents must not be callable without a real account (see Future improvements).
+
+### Auth screens
+
+- **`AuthShell`** redirects away from login/signup only when **`user.guestMode !== true`** (real account), so guests are not bounced back into the app with `?next=` in a loop.
 
 ---
 
@@ -128,7 +145,7 @@ Session payload uses `session.user.guestMode` for guests vs registered users.
 
 ### Catalog (`/api/catalog/...`)
 
-Static/catalog data served from backend modules; frontend loads via `apiModels`, `apiLabs`, `apiAgents`, `apiResearch`, `apiResearchDetail`, `apiAgentExplore`, `apiHeroOnboarding`, `apiFlagshipComparison`, etc.
+Static/catalog data from backend modules; frontend uses `apiModels`, `apiLabs`, `apiAgents`, `apiResearch`, `apiResearchDetail`, `apiAgentExplore`, `apiHeroOnboarding`, `apiFlagshipComparison`, etc.
 
 - `GET models`, `labs`, `agents` (templates)
 - `GET agent-explore`, `hero-onboarding`, `flagship-comparison`
@@ -157,7 +174,7 @@ Static/catalog data served from backend modules; frontend loads via `apiModels`,
 ## Chat Hub (UX)
 
 - Text, voice, attachments; file chips before send; attachments in bubbles.
-- Chat persistence hooks use session/message APIs + `chatSlice` / local storage keys as implemented.
+- Chat persistence uses session/message APIs + `chatSlice` / local storage keys as implemented.
 
 ---
 
@@ -172,6 +189,8 @@ Static/catalog data served from backend modules; frontend loads via `apiModels`,
 
 ### Backend (`backend/.env`)
 
+Copy from `backend/.env.example`.
+
 ```env
 PORT=4000
 MONGO_URI=your_mongo_uri
@@ -183,21 +202,24 @@ CORS_ORIGIN=http://localhost:3000
 
 ### Frontend
 
-- `NEXT_PUBLIC_API_URL` — API base (e.g. `http://localhost:4000/api`).
+Copy from `frontend/.env.example`, or set:
+
+- **`NEXT_PUBLIC_API_URL`** — API base (e.g. `http://localhost:4000/api`). Must match backend URL and `/api` prefix.
 
 ---
 
 ## Security notes
 
-- Secrets via env; no hardcoded passwords in repo.
+- Secrets via env; never commit real `.env` files.
 - Cookies: `httpOnly`; `secure` in production.
 - Password hashing: current implementation may use SHA-256 — **prefer bcrypt or argon2** for production.
+- Add **server-side guards** on sensitive routes when going to production.
 
 ---
 
 ## Validation checklist
 
-**Frontend:** `npm run lint`; routes; nav; login/signup + `next`; chat; attachments; language switch; agents gate for guests.
+**Frontend:** `npm run lint`; routes; nav; login/signup + `next`; chat; attachments; language switch; agents only for signed-in users.
 
 **Backend:** `npm run build`; Swagger; MongoDB; sessions; auth + catalog + chat + agents.
 
@@ -217,13 +239,14 @@ CORS_ORIGIN=http://localhost:3000
 - RBAC if multi-tenant
 - E2E tests
 - Newsletter backend for landing footer if productized
+- Server-side authorization on `/api/agents` for registered users only
 
 ---
 
 ## Summary
 
-NexusAI is a modular full-stack app: **frontend** (UI, i18n, Redux, `lib/api`) and **backend** (NestJS, Mongo, sessions, catalog + chat + agents). **Catalog and app data** are loaded from the **backend API** when `NEXT_PUBLIC_API_URL` points at a running server; translations stay in locale JSON files.
+NexusAI is a modular full-stack app: **frontend** (UI, i18n, Redux, `lib/api`) and **backend** (NestJS, Mongo, sessions, catalog + chat + agents). **Catalog and app data** load from the **backend API** when `NEXT_PUBLIC_API_URL` points at a running server; translations stay in locale JSON files.
 
-Build incrementally and avoid breaking existing API shapes or auth semantics.
+Build incrementally and avoid breaking existing API shapes or auth semantics (especially **`session`** and **`guestMode`**).
 
 ---

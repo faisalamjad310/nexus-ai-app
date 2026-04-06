@@ -1,3 +1,15 @@
+# NexusAI — Backend
+
+**Author:** Hafiz Faisal
+
+NestJS API for **NexusAI**: auth (sessions + guest), catalog, chat persistence, user agents, static uploads under `/uploads`.
+
+- **Env:** copy `.env.example` to `.env` (`MONGO_URI`, `SESSION_SECRET`, `CORS_ORIGIN`).
+- **Swagger:** `/api/docs` when the app is running.
+- **Project guide:** see repo root **[../Claude.md](../Claude.md)** for modules and API overview.
+
+---
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
