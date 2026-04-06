@@ -1,0 +1,422 @@
+{
+  "common": {
+    "chat_hub": "Chat Hub",
+    "marketplace": "Marketplace",
+    "discover_new": "Discover New",
+    "agents": "Agents",
+    "sign_in": "Sign in",
+    "get_started": "Get Started",
+    "start": "Start",
+    "go_home": "NexusAI",
+    "tooltips": {
+      "voice_record": "Voice recording",
+      "voice_typing": "Voice typing",
+      "attach_file": "Attach file",
+      "attach_image": "Attach image",
+      "search": "Search",
+      "send_message": "Send message",
+      "active_model": "Active model"
+    }
+  },
+  "landing": {
+    "hero_headline_l1": "Find your perfect",
+    "hero_headline_highlight": "AI model",
+    "hero_headline_l2": "with guided",
+    "hero_headline_l3": "discovery",
+    "hero_subtitle": "You don't need to know anything about AI to get started. Just click the box below — we'll do the rest together. ✨",
+    "search_placeholder": "Search AI models or describe your use case...",
+    "search_button": "Let's go",
+    "chips": {
+      "coding": "🧠 Best for coding",
+      "vision": "💰 Cheapest vision",
+      "fastest": "⚡ Fastest chatbot",
+      "opensource": "🔬 Open source",
+      "compare": "📊 GPT vs Claude"
+    },
+    "actions": {
+      "chat": "Chat with any model",
+      "compare": "Compare models",
+      "build": "Build an agent",
+      "analyse": "Analyse data",
+      "generate": "Generate images",
+      "explore": "Explore more"
+    },
+    "stats": {
+      "models": "AI Models",
+      "labs": "AI Labs",
+      "devs": "Developers"
+    },
+    "featured_title": "Featured Models",
+    "featured_view_all": "View all →",
+    "labs_title": "Browse by AI Lab",
+    "labs_subtitle": "Browse models from 28+ leading labs",
+    "labs_explore": "Explore →",
+    "comparison_title": "Flagship Model Comparison",
+    "comparison_subtitle": "Side-by-side view of the leading models across all major labs. Input/Output prices per 1M tokens.",
+    "comparison_cta": "Compare all →",
+    "comparison_col_model": "Model",
+    "comparison_col_lab": "Lab",
+    "comparison_col_context": "Context",
+    "comparison_col_input": "Input $/1M",
+    "comparison_col_output": "Output $/1M",
+    "comparison_col_multimodal": "Multimodal",
+    "comparison_col_speed": "Speed",
+    "comparison_col_best": "Best for",
+    "catalog_error": "Could not load catalog. Ensure the backend is running (NEXT_PUBLIC_API_URL).",
+    "comparison_error": "Could not load comparison data. Check that the API is running.",
+    "banner_find": "Find your perfect AI model",
+    "banner_questions": "Answer 4 quick questions and get a personalised recommendation in under 60 seconds.",
+    "banner_cta": "Get personalised recommendations →",
+    "footer": {
+      "description": "The AI model hub trusted by 50,000+ developers worldwide.",
+      "copyright": "© 2026 NexusAI. All rights reserved.",
+      "tagline": "Built for developers, by developers.",
+      "sections": {
+        "product": "Product",
+        "models": "Models",
+        "resources": "Resources",
+        "company": "Company"
+      },
+      "links": {
+        "marketplace": "Marketplace",
+        "chat_hub": "Chat Hub",
+        "agent_builder": "Agent Builder",
+        "pricing": "Pricing",
+        "documentation": "Documentation",
+        "api": "API",
+        "blog": "Blog",
+        "about": "About",
+        "careers": "Careers",
+        "contact": "Contact"
+      }
+    }
+  },
+  "chat": {
+    "sidebar": {
+      "models": "Models",
+      "search": "Search...",
+      "loading": "Loading...",
+      "create_agent": "Create Agent",
+      "switched_to_toast": "Switched to {{name}}"
+    },
+    "right_panel": {
+      "active_model": "Active Model",
+      "rating": "Rating",
+      "reviews": "Reviews",
+      "price": "Price",
+      "details": "Details",
+      "how_to_use": "How to Use",
+      "quick_actions": "Quick Actions",
+      "refine_setup": "Refine Your Setup",
+      "latest_updates": "Latest Updates",
+      "actions": {
+        "marketplace": "🛍 Browse Marketplace",
+        "build_agent": "🤖 Build an Agent",
+        "research_feed": "🔬 Research Feed"
+      },
+      "refine": {
+        "faster_cheaper": "Make it faster & cheaper",
+        "accuracy_quality": "Increase accuracy & quality",
+        "api_integration": "Add tool/API integration",
+        "scale_production": "Scale for production"
+      }
+    },
+    "area": {
+      "welcome_title": "Welcome to NexusAI Hub",
+      "welcome_subtitle": "I'll help you find the perfect AI model in under 60 seconds. What's your primary use case?",
+      "placeholder": "...Message NexusAI",
+      "goals": {
+        "chat": "Chat & Assistants",
+        "code": "Code & Dev",
+        "image": "Image Generation",
+        "data": "Data Analysis",
+        "writing": "Content Writing",
+        "agents": "AI Agents"
+      },
+      "onboarding": {
+        "audience": {
+          "title": "Who is your primary audience?",
+          "personal": "Personal use",
+          "business": "Small business",
+          "enterprise": "Enterprise",
+          "academic": "Research / Academic"
+        },
+        "level": {
+          "title": "What's your experience level with AI APIs?",
+          "beginner": "Complete beginner",
+          "experience": "Some experience",
+          "intermediate": "Intermediate dev",
+          "expert": "Expert / Production"
+        },
+        "budget": {
+          "title": "Almost done! What's your monthly budget for AI services?",
+          "free": "Free only",
+          "under50": "Under $50/mo",
+          "under500": "$50–$500/mo",
+          "over500": "$500+/mo"
+        },
+        "completion": "Based on your profile, here are my top personalised recommendations:"
+      },
+      "suggestions": {
+        "product_desc": "Write a product description",
+        "summarise": "Summarise this document",
+        "pro_email": "Draft a professional email",
+        "content_calendar": "Create a content calendar"
+      },
+      "modes": {
+        "learn": "Learn",
+        "create": "Create",
+        "analyze": "Analyze",
+        "code": "Code",
+        "usecases": "Use Cases"
+      }
+    }
+  },
+  "auth": {
+    "panel": {
+      "headline": "Build Smarter with AI Agents",
+      "sub": "Discover, compare, and deploy 220+ models from leading labs — one hub for every workflow."
+    },
+    "form": {
+      "tab_signin": "Sign In",
+      "tab_signup": "Create Account",
+      "signin_title": "Sign in",
+      "signup_title": "Create your account",
+      "signin_subtitle": "Welcome back — pick up where you left off.",
+      "signup_subtitle": "Join the hub and unlock saved chats & agents.",
+      "signin_welcome": "Welcome back",
+      "signin_lead": "Sign in to your NexusAI account to continue.",
+      "signup_lead": "Create your NexusAI account to get started.",
+      "labels": {
+        "name": "Name",
+        "email": "Email",
+        "email_address": "Email address",
+        "password": "Password"
+      },
+      "placeholders": {
+        "name": "Jane Doe",
+        "email": "you@company.com",
+        "password": "••••••••",
+        "password_signin": "Enter your password"
+      },
+      "buttons": {
+        "wait": "Please wait…",
+        "signin": "Sign in",
+        "signup": "Create account"
+      },
+      "forgot_password": "Forgot password?",
+      "or_continue": "Or continue with",
+      "social_soon": "Coming soon — use email and password for now.",
+      "footer_no_account": "Don't have an account?",
+      "footer_create_one": "Create one",
+      "footer_have_account": "Already have an account?",
+      "footer_sign_in": "Sign in",
+      "links": {
+        "new_here": "New here?",
+        "already_account": "Already have an account?",
+        "create_account": "Create an account",
+        "sign_in": "Sign in"
+      }
+    },
+    "validation": {
+      "email": "Please enter a valid email.",
+      "password_min": "Password must be at least 6 characters.",
+      "name": "Please enter your name."
+    },
+    "error": {
+      "generic": "Something went wrong. Please try again."
+    },
+    "features": {
+      "models_title": "220+ AI Models",
+      "models_desc": "Access the latest models from OpenAI, Claude, Gemini, and more",
+      "deploy_title": "Instant Deployment",
+      "deploy_desc": "Start using any model in seconds without setup hassles",
+      "compare_title": "Smart Comparisons",
+      "compare_desc": "Compare models side-by-side to find the perfect fit",
+      "build_title": "Agent Builder",
+      "build_desc": "Create powerful AI agents with visual workflow design"
+    },
+    "testimonial": {
+      "quote": "NexusAI cut our model evaluation time from weeks to hours. The comparison feature alone saved us thousands in development costs.",
+      "author": "Sarah Chen",
+      "role": "Head of AI, Vercel"
+    },
+    "badges": {
+      "signin_title": "Welcome back to the hub",
+      "signup_title": "Join 50,000+ developers"
+    },
+    "leftpanel": {
+      "signin_headline": "Your AI models await you.",
+      "signin_desc": "Access all your favourite AI models, saved chats, and agent configurations in one click.",
+      "signup_headline": "The smartest way to ship with AI.",
+      "signup_desc": "Discover, compare and deploy 220+ AI models from the world's best labs — all in one platform."
+    },
+    "builder": {
+      "cancel": "Cancel",
+      "back": "Back",
+      "save_test": "Save & Test",
+      "saving": "Saving…",
+      "deploy_agent": "Deploy Agent",
+      "deploying": "Deploying…",
+      "test_failed": "Test failed — make sure the agent is saved first.",
+      "save_failed": "Failed to save agent. Please try again.",
+      "agent_deployed": "Agent deployed successfully!",
+      "deploy_failed": "Deploy failed. Please try again."
+    }
+  },
+  "modal": {
+    "tabs": {
+      "overview": "Overview",
+      "how_to_use": "How to Use",
+      "pricing": "Pricing",
+      "prompt_guide": "Prompt Guide",
+      "agents": "Agents",
+      "reviews": "Reviews",
+      "create_agent": "Create Agent"
+    },
+    "configure_agent": "Configure New Agent",
+    "developing_agent_using": "Developing an agent using"
+  },
+  "modelCard": {
+    "try": "Try →"
+  },
+  "agents": {
+    "header_title": "Agent Builder",
+    "header_subtitle": "Create powerful AI agents using any model.",
+    "sidebar_blurb": "Create powerful AI agents using any model. Pick a template or start from scratch.",
+    "button_new_agent": "New Agent",
+    "hero_prefix": "Agent works",
+    "hero_accent": "for you.",
+    "hero_sub": "Your AI agent takes care of everything, end to end.",
+    "search_placeholder": "What should we work on next?",
+    "search_send": "Send to Hub",
+    "view_all_suggestions": "View all suggestions",
+    "shuffle": "Shuffle",
+    "my_agents": "My Agents",
+    "agent_library": "Agent Library",
+    "library_sub": "Choose a default agent or build your own",
+    "default_agents": "Default Agents",
+    "create_custom": "Create Custom Agent",
+    "no_agents_title": "No agents yet.",
+    "no_agents_hint": "Create your first agent to get started!",
+    "delete_agent": "Delete",
+    "agent_deleted": "Agent removed",
+    "edit": "Edit",
+    "use_case_library": "Use case library",
+    "apps_count": "{{count}} ideas",
+    "banner_title": "Not sure where to start?",
+    "banner_description": "Chat with our AI guide — describe your agent and get a personalised setup plan.",
+    "banner_cta": "Ask the Hub →",
+    "templates_label": "Agent Templates",
+    "explore": {
+      "tabs": {
+        "use_cases": "Use cases",
+        "build_business": "Build a business",
+        "learn": "Help me learn",
+        "monitor": "Monitor the situation",
+        "research": "Research",
+        "create": "Create content",
+        "analyze": "Analyze & research"
+      }
+    },
+    "chat": {
+      "back_agents": "Agents",
+      "live": "Live",
+      "draft": "Draft",
+      "meta_tools": "Tools: {{tools}}",
+      "tools_none": "None",
+      "meta_memory": "Memory: Short-term",
+      "settings": "Settings",
+      "try_label": "Try:",
+      "try_1": "What can you do?",
+      "try_2": "Give me a quick summary",
+      "try_3": "Show me an example",
+      "try_4": "How do you handle errors?",
+      "try_5": "What are your limits?",
+      "welcome": "👋 Hi! I'm {{name}} — a powerful AI agent. How can I help you today?",
+      "input_placeholder": "Describe your project, ask a question, or just say hi — I'm here to help…",
+      "thinking": "Thinking…",
+      "send_error": "Could not reach the agent. Try again.",
+      "error_reply": "Sorry — I could not complete that request. Please try again.",
+      "coming_soon": "Coming soon",
+      "video": "Video",
+      "palette": "Prompt tips",
+      "footer_preview": "Live preview of your deployed agent.",
+      "edit_config": "Edit configuration →",
+      "avatar_user": "U",
+      "attachments_only": "(User sent attachments only.)",
+      "prompt_voice_note": "The user sent a voice recording. Respond helpfully as if they asked a question in speech; acknowledge the voice note.",
+      "prompt_video_note": "The user attached a video. Acknowledge it and offer help for typical follow-ups.",
+      "file_read_error": "could not read contents",
+      "prompt_image_note": "The user attached an image. Infer what you can from the filename or offer to help once they describe it.",
+      "file_too_large": "\"{{name}}\" is too large (max 10 MB).",
+      "max_attachments": "You can attach up to {{n}} files.",
+      "record_unsupported": "Recording is not supported in this browser.",
+      "recorder_unsupported": "MediaRecorder is not available.",
+      "voice_saved_attach": "Voice clip added as attachment.",
+      "record_failed": "Recording failed.",
+      "recording_hint": "Recording… tap again to stop.",
+      "mic_denied": "Microphone permission denied.",
+      "mic_missing": "No microphone found.",
+      "mic_error": "Could not access the microphone.",
+      "recording_stopped": "Recording stopped.",
+      "voice_type_unsupported": "Voice typing is not supported in this browser.",
+      "voice_typing_on": "Voice typing is on — speak clearly.",
+      "voice_typing_fail": "Could not start voice typing.",
+      "n_files_attached": "{{count}} file(s) attached",
+      "stop_recording": "Stop recording",
+      "prompt_tip_toast": "Be specific: goal, audience, and any constraints. Attach files for context."
+    },
+    "steps": {
+      "template": "Template",
+      "template_desc": "Choose or create an agent template",
+      "configure": "Configure",
+      "configure_desc": "Set up tools, knowledge, and behavior",
+      "test": "Test",
+      "test_desc": "Test your agent with sample queries",
+      "deploy": "Deploy",
+      "deploy_desc": "Deploy and monitor your agent"
+    },
+    "tools": {
+      "web_search": "Web Search",
+      "web_search_desc": "Search the internet for real-time information",
+      "code_interpreter": "Code Interpreter",
+      "code_interpreter_desc": "Execute and test code snippets",
+      "file_access": "File Access",
+      "file_access_desc": "Read and process uploaded files",
+      "api_calls": "API Calls",
+      "api_calls_desc": "Integrate with external APIs",
+      "memory": "Memory",
+      "memory_desc": "Store and retrieve conversation context",
+      "scheduler": "Scheduler",
+      "scheduler_desc": "Schedule recurring tasks and workflows"
+    }
+  },
+  "marketplace": {
+    "header": "AI Marketplace",
+    "search_placeholder": "Search models...",
+    "filters": {
+      "all": "All",
+      "language": "Language",
+      "vision": "Vision",
+      "code": "Code",
+      "image_gen": "Image Gen",
+      "audio": "Audio",
+      "opensource": "Open Source"
+    },
+    "coming_soon": {
+      "voice": "Voice search — coming soon",
+      "upload": "File upload — coming soon"
+    }
+  },
+  "research": {
+    "header_title": "AI Research Feed",
+    "header_subtitle": "Latest papers, releases & breakthroughs.",
+    "live_updates": "Live updates",
+    "discuss_in_chat": "Discuss in Chat",
+    "newsletter_title": "Stay ahead of AI",
+    "newsletter_desc": "Weekly digest of the most important AI research.",
+    "newsletter_placeholder": "your@email.com",
+    "newsletter_subscribe": "Subscribe"
+  }
+}

@@ -1,10 +1,14 @@
-﻿import { NestFactory } from '@nestjs/core';
+import 'dotenv/config';
+import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
-
+import { ResponseInterceptor } from './common/interceptors/response.interceptor';
+import { HttpExceptionFilter } from './common/filters/http-exception.filter';
+const sessionSecret =
+  process.env.SESSION_SECRET?.trim() || 'change-this-secret';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
@@ -14,7 +18,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   app.use(
     session({
-      secret: process.env.SESSION_SECRET ?? 'change-this-secret',
+      secret: sessionSecret,
       resave: false,
       saveUninitialized: false,
       cookie: {
@@ -39,18 +43,22 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-
+  app.useGlobalInterceptors(new ResponseInterceptor());
+  app.useGlobalFilters(new HttpExceptionFilter());
   const swaggerConfig = new DocumentBuilder()
     .setTitle('NexusAI App Backend API')
-    .setDescription('APIs')
+    .setDescription(
+      'REST API for the NexusAI app',
+    )
     .setVersion('1.0.0')
     .addTag('catalog')
-    .addTag('NexusAI')
+    .addTag('chat-hub')
+    .addTag('chat')
+    .addTag('agents')
     .addTag('auth')
     .build();
   const swaggerDoc = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api/docs', app, swaggerDoc);
-
   await app.listen(process.env.PORT ?? 4000);
 }
 bootstrap();

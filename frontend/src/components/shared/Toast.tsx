@@ -1,22 +1,18 @@
-'use client';
-
-import { useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/store';
-import { hideToast } from '@/store/appSlice';
-
+"use client";
+import { useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store";
+import { hideToast } from "@/store/appSlice";
 export default function Toast() {
   const dispatch = useDispatch();
   const { toastMessage, toastVisible } = useSelector((s: RootState) => s.app);
-
   useEffect(() => {
     if (toastVisible) {
       const t = setTimeout(() => dispatch(hideToast()), 3000);
       return () => clearTimeout(t);
     }
   }, [toastVisible, dispatch]);
-
   return (
     <AnimatePresence>
       {toastVisible && (

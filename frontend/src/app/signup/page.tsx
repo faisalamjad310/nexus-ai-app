@@ -1,6 +1,5 @@
-import { Suspense } from 'react';
-import AuthShell from '@/components/auth/AuthShell';
-
+import { Suspense } from "react";
+import AuthShell from "@/components/auth/AuthShell";
 export default function SignupPage() {
   return (
     <Suspense>
@@ -8,4 +7,3 @@ export default function SignupPage() {
     </Suspense>
   );
 }
-

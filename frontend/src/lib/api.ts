@@ -1,93 +1,412 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000/api';
-
-async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${API_BASE}${path}`, {
-    credentials: 'include',
-    headers: { 'Content-Type': 'application/json', ...init?.headers },
-    ...init,
-  });
-  if (!res.ok) {
-    let message = `Request failed (${res.status})`;
-    try {
-      const body = await res.json();
-      message = body?.message ?? message;
-    } catch {
-      // ignore parse error
-    }
-    throw new Error(message);
-  }
-  return res.json() as Promise<T>;
+const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000/api";
+export function resolveApiPublicUrl(path: string): string {
+  if (!path) return "";
+  if (path.startsWith("http://") || path.startsWith("https://")) return path;
+  const origin = API_BASE.replace(/\/?api\/?$/i, "");
+  const p = path.startsWith("/") ? path : `/${path}`;
+  return `${origin}${p}`;
 }
-
-// ── Auth ───────────────────────────────────────────────────────────────────
-
+interface BackendResponse<T> {
+  success: boolean;
+  message: string | string[];
+  data: T;
+}
+async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  const isFormData =
+    typeof FormData !== "undefined" && init?.body instanceof FormData;
+  const { headers: initHeaders, ...restInit } = init ?? {};
+  const headers = new Headers(initHeaders);
+  if (isFormData) {
+    headers.delete("Content-Type");
+  } else if (!headers.has("Content-Type")) {
+    headers.set("Content-Type", "application/json");
+  }
+  const res = await fetch(`${API_BASE}${path}`, {
+    credentials: "include",
+    ...restInit,
+    headers,
+  });
+  const body = (await res.json()) as BackendResponse<T>;
+  if (!res.ok || !body.success) {
+    const msg = body.message;
+    const text = Array.isArray(msg)
+      ? msg.join(", ")
+      : (msg ?? `Request failed (${res.status})`);
+    throw new Error(text);
+  }
+  return body.data;
+}
 export interface SessionUser {
   id: string;
   name: string;
   email: string;
-  plan: 'free' | 'pro' | 'enterprise';
+  plan: "free" | "pro" | "enterprise";
   guestMode?: boolean;
 }
-
 export function apiSignup(name: string, email: string, password: string) {
-  return request<{ ok: boolean; user: SessionUser }>('/auth/signup', {
-    method: 'POST',
+  return request<SessionUser>("/auth/signup", {
+    method: "POST",
     body: JSON.stringify({ name, email, password }),
   });
 }
-
 export function apiLogin(email: string, password: string) {
-  return request<{ ok: boolean; user: SessionUser }>('/auth/login', {
-    method: 'POST',
+  return request<SessionUser>("/auth/login", {
+    method: "POST",
     body: JSON.stringify({ email, password }),
   });
 }
-
 export function apiGuest() {
-  return request<{ ok: boolean; user: SessionUser }>('/auth/guest', {
-    method: 'POST',
+  return request<SessionUser>("/auth/guest", {
+    method: "POST",
   });
 }
-
 export function apiSession() {
-  return request<{ authenticated: boolean; user: SessionUser | null }>('/auth/session');
+  return request<{ authenticated: boolean; user: SessionUser | null }>(
+    "/auth/session",
+  );
 }
-
 export function apiLogout() {
-  return request<{ ok: boolean }>('/auth/logout', { method: 'POST' });
+  return request<{ message: string }>("/auth/logout", { method: "POST" });
 }
-
-// ── Catalog ────────────────────────────────────────────────────────────────
-
+export interface Model {
+  id: string;
+  icon: string;
+  bg: string;
+  name: string;
+  lab: string;
+  org: string;
+  desc: string;
+  tags: string[];
+  badge: string;
+  badgeClass: string;
+  rating: number;
+  reviews: number;
+  price: string;
+  types: string[];
+  price_start: number;
+}
+export interface Lab {
+  id: string;
+  icon: string;
+  name: string;
+  count: number;
+  color: string;
+}
+export interface AgentTemplate {
+  icon: string;
+  title: string;
+  desc: string;
+  modelId: string;
+  systemPrompt: string;
+  tools: string[];
+  tags: string[];
+}
+export interface ResearchItem {
+  id: string;
+  date: string;
+  org: string;
+  title: string;
+  summary: string;
+  category: string;
+}
+export interface ResearchDetail extends ResearchItem {
+  category: string;
+  longDate: string;
+  authorsLine: string;
+  overview: string;
+  metrics: {
+    value: string;
+    label: string;
+  }[];
+  keyFindings: string[];
+  modelsReferenced: {
+    icon: string;
+    name: string;
+  }[];
+  impact: string;
+  citation: string;
+  arxivId?: string;
+}
 export function apiModels() {
-  return request<unknown[]>('/catalog/models');
+  return request<Model[]>("/catalog/models");
 }
-
 export function apiAgents() {
-  return request<unknown[]>('/catalog/agents');
+  return request<AgentTemplate[]>("/catalog/agents");
 }
-
+export type AgentExploreTabId =
+  | "use_cases"
+  | "build_business"
+  | "learn"
+  | "monitor"
+  | "research"
+  | "create"
+  | "analyze";
+export interface AgentExploreTabDto {
+  id: AgentExploreTabId;
+  label: string;
+}
+export interface AgentExploreSuggestionDto {
+  icon: string;
+  text: string;
+}
+export interface AgentUseCaseAppDto {
+  name: string;
+  emoji: string;
+  type: string;
+  desc: string;
+}
+export interface AgentExplorePayload {
+  tabs: AgentExploreTabDto[];
+  suggestions: Record<AgentExploreTabId, AgentExploreSuggestionDto[]>;
+  useCaseApps: Record<AgentExploreTabId, AgentUseCaseAppDto[]>;
+}
+export function apiAgentExplore() {
+  return request<AgentExplorePayload>("/catalog/agent-explore");
+}
 export function apiLabs() {
-  return request<unknown[]>('/catalog/labs');
+  return request<Lab[]>("/catalog/labs");
 }
-
-// ── Chat ───────────────────────────────────────────────────────────────────
-
+export interface HeroOnboardStepDto {
+  k: string;
+  q: string;
+  hint: string;
+  opts: {
+    icon: string;
+    l: string;
+    sub: string;
+  }[];
+}
+export function apiHeroOnboarding() {
+  return request<HeroOnboardStepDto[]>("/catalog/hero-onboarding");
+}
+export type FlagshipSpeedTier = "fast" | "moderate" | "fastest";
+export interface FlagshipComparisonRow {
+  icon: string;
+  model: string;
+  lab: string;
+  context: string;
+  inputPrice: string;
+  outputPrice: string;
+  multimodal: boolean;
+  speed: FlagshipSpeedTier;
+  bestFor: string;
+}
+export function apiFlagshipComparison() {
+  return request<FlagshipComparisonRow[]>("/catalog/flagship-comparison");
+}
+export function apiResearch() {
+  return request<ResearchItem[]>("/catalog/research");
+}
+export function apiResearchDetail(id: string) {
+  return request<ResearchDetail>(`/catalog/research/${encodeURIComponent(id)}`);
+}
+export interface AgentRecord {
+  _id: string;
+  name: string;
+  description: string;
+  modelId: string;
+  systemPrompt: string;
+  tools: string[];
+  status: "draft" | "active" | "paused";
+  createdAt: string;
+  updatedAt: string;
+}
+export interface AgentRunResult {
+  agentId: string;
+  agentName: string;
+  model: {
+    id: string;
+    name: string;
+    icon: string;
+  };
+  input: string;
+  output: string;
+  toolsUsed: string[];
+  timestamp: string;
+}
+export function apiCreateAgent(payload: {
+  name: string;
+  description?: string;
+  modelId: string;
+  systemPrompt?: string;
+  tools?: string[];
+  status?: string;
+}) {
+  return request<AgentRecord>("/agents", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+}
+export function apiGetAgents() {
+  return request<AgentRecord[]>("/agents");
+}
+export function apiUpdateAgent(
+  id: string,
+  payload: Partial<{
+    name: string;
+    description: string;
+    modelId: string;
+    systemPrompt: string;
+    tools: string[];
+    status: string;
+  }>,
+) {
+  return request<AgentRecord>(`/agents/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(payload),
+  });
+}
+export function apiDeleteAgent(id: string) {
+  return request<{ ok: boolean }>(`/agents/${id}`, { method: "DELETE" });
+}
+export function apiRunAgent(id: string, message: string) {
+  return request<AgentRunResult>(`/agents/${id}/run`, {
+    method: "POST",
+    body: JSON.stringify({ message }),
+  });
+}
 export interface ChatContext {
   goal?: string;
   audience?: string;
   level?: string;
   budget?: string;
 }
-
 export interface ChatReply {
   text: string;
   recs: unknown[];
+  attachments?: ChatAttachmentType[];
 }
-
-export function apiChatMessage(message: string, context?: ChatContext) {
-  return request<ChatReply>('/chat/message', {
-    method: 'POST',
-    body: JSON.stringify({ message, context }),
+export interface ChatAttachmentType {
+  id: string;
+  name: string;
+  size: number;
+  type: string;
+  url?: string;
+}
+export interface ModelRecommendationType {
+  id: string;
+  name: string;
+  description?: string;
+  rating?: number;
+  price_start?: number;
+}
+export interface ChatMessageRecord {
+  _id: string;
+  conversationId: string;
+  role: "user" | "ai";
+  content: string;
+  attachments?: ChatAttachmentType[];
+  recs?: ModelRecommendationType[];
+  createdAt: string;
+}
+export interface ChatSessionRecord {
+  _id: string;
+  sessionId: string;
+  isGuest: boolean;
+  title: string;
+  context?: ChatContext;
+  currentModelId?: string;
+  messages?: ChatMessageRecord[];
+  createdAt: string;
+  updatedAt: string;
+}
+export function apiChatMessage(
+  message: string,
+  context?: ChatContext,
+  attachments?: File[],
+) {
+  if (attachments && attachments.length > 0) {
+    const formData = new FormData();
+    formData.append("message", message);
+    if (context) {
+      formData.append("context", JSON.stringify(context));
+    }
+    attachments.forEach((file) => {
+      formData.append("files", file);
+    });
+    return request<ChatReply>("/chat/message", {
+      method: "POST",
+      body: formData,
+      headers: {},
+    });
+  } else {
+    return request<ChatReply>("/chat/message", {
+      method: "POST",
+      body: JSON.stringify({ message, context }),
+    });
+  }
+}
+export function apiCreateChatSession(payload: {
+  sessionId: string;
+  isGuest: boolean;
+  title?: string;
+  context?: ChatContext;
+  currentModelId?: string;
+}) {
+  return request<ChatSessionRecord>("/chat/session/create", {
+    method: "POST",
+    body: JSON.stringify(payload),
   });
+}
+function encPath(s: string) {
+  return encodeURIComponent(s);
+}
+export function apiGetChatSession(sessionId: string) {
+  return request<ChatSessionRecord>(`/chat/session/${encPath(sessionId)}`);
+}
+export function apiGetUserChats(userId: string) {
+  return request<ChatSessionRecord[]>(`/chat/sessions/${encPath(userId)}`);
+}
+export function apiUpdateChatSession(
+  sessionId: string,
+  payload: {
+    title?: string;
+    context?: ChatContext;
+    currentModelId?: string;
+  },
+) {
+  return request<ChatSessionRecord>(`/chat/session/${encPath(sessionId)}`, {
+    method: "PUT",
+    body: JSON.stringify(payload),
+  });
+}
+export function apiDeleteChatSession(sessionId: string) {
+  return request<{ success: boolean }>(`/chat/session/${encPath(sessionId)}`, {
+    method: "DELETE",
+  });
+}
+export function apiDeleteAllUserChats(userId: string) {
+  return request<{ success: boolean }>(`/chat/sessions/${encPath(userId)}`, {
+    method: "DELETE",
+  });
+}
+export function apiSaveChatMessage(
+  sessionId: string,
+  payload: {
+    role: "user" | "ai";
+    content: string;
+    recs?: ModelRecommendationType[];
+    attachments?: ChatAttachmentType[];
+  },
+) {
+  return request<ChatMessageRecord>(
+    `/chat/session/${encPath(sessionId)}/message`,
+    {
+      method: "POST",
+      body: JSON.stringify(payload),
+    },
+  );
+}
+export function apiGetChatMessages(sessionId: string) {
+  return request<ChatMessageRecord[]>(
+    `/chat/session/${encPath(sessionId)}/messages`,
+  );
+}
+export function apiDeleteChatMessage(messageId: string, sessionId: string) {
+  return request<{ success: boolean }>(
+    `/chat/message/${encPath(messageId)}/${encPath(sessionId)}`,
+    {
+      method: "DELETE",
+    },
+  );
 }

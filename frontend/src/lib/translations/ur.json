@@ -1,0 +1,399 @@
+{
+  "common": {
+    "chat_hub": "چیٹ ہب",
+    "marketplace": "مارکیٹ پلیس",
+    "discover_new": "نیا دریافت کریں",
+    "agents": "ایجنٹس",
+    "sign_in": "سائن ان",
+    "get_started": "شروع کریں →",
+    "start": "شروع کریں →",
+    "go_home": "نیکسس AI",
+    "tooltips": {
+      "voice_record": "وائس ریکارڈنگ",
+      "voice_typing": "وائس ٹائپنگ",
+      "attach_file": "فائل منسلک کریں",
+      "attach_image": "تصویر منسلک کریں",
+      "search": "تلاش",
+      "send_message": "پیغام بھیجیں",
+      "active_model": "فعال ماڈل"
+    }
+  },
+  "landing": {
+    "hero_headline_l1": "اپنا بہترین",
+    "hero_headline_highlight": "AI ماڈل",
+    "hero_headline_l2": "رہنمائی سے",
+    "hero_headline_l3": "دریافت",
+    "hero_subtitle": "شروع کرنے کے لیے AI کے بارے میں کچھ جاننے کی ضرورت نہیں۔ بس نیچے والے باکس پر کلک کریں — باقی ہم ساتھ مل کر کریں گے۔ ✨",
+    "search_placeholder": "AI ماڈلز تلاش کریں یا اپنے استعمال کے بارے میں بتائیں...",
+    "search_button": "چلیں",
+    "chips": {
+      "coding": "🧠 کوڈنگ کے لیے بہترین",
+      "vision": "💰 سستا ترین ویژن",
+      "fastest": "⚡ تیز ترین چیٹ بوٹ",
+      "opensource": "🔬 اوپن سورس",
+      "compare": "📊 GPT بمقابلہ Claude"
+    },
+    "actions": {
+      "chat": "کسی بھی ماڈل کے ساتھ چیٹ کریں",
+      "compare": "ماڈلز کا موازنہ کریں",
+      "build": "ایجنٹ بنائیں",
+      "analyse": "ڈیٹا کا تجزیہ کریں",
+      "generate": "تصویریں بنائیں",
+      "explore": "مزید دریافت کریں"
+    },
+    "stats": {
+      "models": "AI ماڈلز",
+      "labs": "AI لیبز",
+      "devs": "ڈویلپرز"
+    },
+    "featured_title": "نمایاں ماڈلز",
+    "featured_view_all": "سب کو دیکھیں →",
+    "labs_title": "AI لیب کے مطابق براؤز کریں",
+    "labs_subtitle": "28+ معروف لیبز سے ماڈلز براؤز کریں",
+    "labs_explore": "تلاش کریں →",
+    "comparison_title": "فلیگ شپ ماڈل کا موازنہ",
+    "comparison_subtitle": "تمام بڑی لیبز کے معروف ماڈلز کا بیک وقت جائزہ۔ فی 1M ٹوکن ان پٹ/آؤٹ پٹ قیمتیں۔",
+    "comparison_cta": "سب کا موازنہ →",
+    "comparison_col_model": "ماڈل",
+    "comparison_col_lab": "لیب",
+    "comparison_col_context": "سیاق",
+    "comparison_col_input": "ان پٹ $/1M",
+    "comparison_col_output": "آؤٹ پٹ $/1M",
+    "comparison_col_multimodal": "ملٹی موڈل",
+    "comparison_col_speed": "رفتار",
+    "comparison_col_best": "بہترین برائے",
+    "catalog_error": "کیٹلاگ لوڈ نہیں ہو سکا۔ چیک کریں کہ بیک اینڈ چل رہا ہے (NEXT_PUBLIC_API_URL)۔",
+    "comparison_error": "موازنہ ڈیٹا لوڈ نہیں ہو سکا۔ چیک کریں کہ API چل رہی ہے۔",
+    "banner_find": "اپنا بہترین AI ماڈل تلاش کریں",
+    "banner_questions": "4 فوری سوالات کے جوابات دیں اور 60 سیکنڈ سے کم میں ذاتی نوعیت کی سفارش حاصل کریں۔",
+    "banner_cta": "ذاتی نوعیت کی سفارشات حاصل کریں →",
+    "footer": {
+      "description": "50,000+ ڈویلپرز کا قابل اعتماد AI ماڈل ہب دنیا بھر میں۔",
+      "copyright": "© 2026 NexusAI۔ تمام حقوق محفوظ ہیں۔",
+      "tagline": "ڈویلپرز کے لیے، ڈویلپرز کی طرف سے بنایا گیا۔",
+      "sections": {
+        "product": "مصنوعات",
+        "models": "ماڈلز",
+        "resources": "وسائل",
+        "company": "کمپنی"
+      },
+      "links": {
+        "marketplace": "مارکیٹ پلیس",
+        "chat_hub": "چیٹ ہب",
+        "agent_builder": "ایجنٹ بنانے والا",
+        "pricing": "قیمت",
+        "documentation": "دستاویزات",
+        "api": "API",
+        "blog": "بلاگ",
+        "about": "تعارف",
+        "careers": "کیریئر",
+        "contact": "رابطہ"
+      }
+    }
+  },
+  "chat": {
+    "sidebar": {
+      "models": "ماڈلز",
+      "search": "تلاش کریں...",
+      "loading": "لوڈ ہو رہا ہے...",
+      "create_agent": "ایجنٹ بنائیں",
+      "switched_to_toast": "{{name}} پر تبدیل کر دیا گیا ہے"
+    },
+    "right_panel": {
+      "active_model": "فعال ماڈل",
+      "rating": "درجہ بندی",
+      "reviews": "تبصرے",
+      "price": "قیمت",
+      "details": "تفصیلات",
+      "how_to_use": "استعمال کا طریقہ",
+      "quick_actions": "فوری اقدامات",
+      "refine_setup": "اپنی سیٹ اپ کو بہتر بنائیں",
+      "latest_updates": "تازہ ترین اپ ڈیٹس",
+      "actions": {
+        "marketplace": "🛍 مارکیٹ پلیس براؤز کریں",
+        "build_agent": "🤖 ایجنٹ بنائیں",
+        "research_feed": "🔬 ریسرچ فیڈ"
+      },
+      "refine": {
+        "faster_cheaper": "اسے تیز اور سستا بنائیں",
+        "accuracy_quality": "درستگی اور معیار میں اضافہ کریں",
+        "api_integration": "ٹول/API انضمام شامل کریں",
+        "scale_production": "پیداوار کے لیے پیمانہ بڑھائیں"
+      }
+    },
+    "area": {
+      "welcome_title": "نیکسس AI ہب میں خوش آمدید",
+      "welcome_subtitle": "میں 60 سیکنڈ سے بھی کم وقت میں بہترین AI ماڈل تلاش کرنے میں آپ کی مدد کروں گا۔ آپ کی بنیادی ضرورت کیا ہے؟",
+      "placeholder": "...نیکسس AI کو پیغام بھیجیں",
+      "goals": {
+        "chat": "چیٹ اور معاونین",
+        "code": "کوڈ اور ڈویلپمنٹ",
+        "image": "تصویر بنانا",
+        "data": "ڈیٹا کا تجزیہ",
+        "writing": "مواد کی تحریر",
+        "agents": "AI ایجنٹس"
+      },
+      "onboarding": {
+        "audience": {
+          "title": "آپ کے بنیادی سامعین کون ہیں؟",
+          "personal": "ذاتی استعمال",
+          "business": "چھوٹا کاروبار",
+          "enterprise": "انٹرپرائز",
+          "academic": "تحقیق / تعلیمی"
+        },
+        "level": {
+          "title": "AI APIs کے بارے میں آپ کا تجربہ کتنا ہے؟",
+          "beginner": "بالکل ابتدائی",
+          "experience": "کچھ تجربہ",
+          "intermediate": "انٹرمیڈیٹ ڈویلپر",
+          "expert": "ماہر / پروڈکشن"
+        },
+        "budget": {
+          "title": "تقریباً مکمل! AI خدمات کے لیے آپ کا ماہانہ بجٹ کتنا ہے؟",
+          "free": "صرف مفت",
+          "under50": "$50/ماہ سے کم",
+          "under500": "$50–$500/ماہ",
+          "over500": "$500+/ماہ"
+        },
+        "completion": "آپ کے پروفائل کی بنیاد پر، یہاں میری اہم ترین اور ذاتی سفارشات ہیں:"
+      },
+      "suggestions": {
+        "product_desc": "مصنوعات کی تفصیل لکھیں",
+        "summarise": "اس دستاویز کا خلاصہ کریں",
+        "pro_email": "ایک پیشہ ور ای میل لکھیں",
+        "content_calendar": "مواد کا کیلنڈر بنائیں"
+      },
+      "modes": {
+        "learn": "سیکھیں",
+        "create": "بنائیں",
+        "analyze": "تجزیہ کریں",
+        "code": "کوڈ",
+        "usecases": "استعمال کے طریقے"
+      }
+    }
+  },
+  "auth": {
+    "panel": {
+      "headline": "AI ایجنٹس کے ساتھ ذہین تر بنیں",
+      "sub": "معروف لیبز سے 220+ ماڈلز دریافت، موازنہ اور تعینات کریں — ہر ورک فلو کے لیے ایک ہب۔"
+    },
+    "form": {
+      "tab_signin": "سائن ان",
+      "tab_signup": "اکاؤنٹ بنائیں",
+      "signin_title": "سائن ان",
+      "signup_title": "اپنا اکاؤنٹ بنائیں",
+      "signin_subtitle": "خوش آمدید - وہاں سے شروع کریں جہاں آپ نے چھوڑا تھا۔",
+      "signup_subtitle": "ہب میں شامل ہوں اور محفوظ چیٹس اور ایجنٹس کو کھول دیں۔",
+      "signin_welcome": "خوش آمدید",
+      "signin_lead": "جاری رکھنے کے لیے اپنے NexusAI اکاؤنٹ میں سائن ان کریں۔",
+      "signup_lead": "شروع کرنے کے لیے اپنا NexusAI اکاؤنٹ بنائیں۔",
+      "labels": {
+        "name": "نام",
+        "email": "ای میل",
+        "email_address": "ای میل پتہ",
+        "password": "پاس ورڈ"
+      },
+      "placeholders": {
+        "name": "جین Doe",
+        "email": "aap@company.com",
+        "password": "••••••••",
+        "password_signin": "اپنا پاس ورڈ درج کریں"
+      },
+      "buttons": {
+        "wait": "براہ کرم انتظار کریں…",
+        "signin": "سائن ان",
+        "signup": "اکاؤنٹ بنائیں"
+      },
+      "forgot_password": "پاس ورڈ بھول گئے؟",
+      "or_continue": "یا جاری رکھیں",
+      "social_soon": "جلد آرہا ہے — ابھی ای میل اور پاس ورڈ استعمال کریں۔",
+      "footer_no_account": "اکاؤنٹ نہیں ہے؟",
+      "footer_create_one": "بنائیں",
+      "footer_have_account": "پہلے سے اکاؤنٹ ہے؟",
+      "footer_sign_in": "سائن ان"
+    },
+    "validation": {
+      "email": "براہ کرم ایک درست ای میل درج کریں۔",
+      "password_min": "پاس ورڈ کم از کم 6 حروف ہونے چاہیں۔",
+      "name": "براہ کرم اپنا نام درج کریں۔"
+    },
+    "error": {
+      "generic": "کچھ غلط ہو گیا۔ براہ کرم دوبارہ کوشش کریں۔"
+    },
+    "features": {
+      "models_title": "220+ AI ماڈلز",
+      "models_desc": "OpenAI، Claude، Gemini اور دیگر سے تازہ ترین ماڈلز تک رسائی حاصل کریں",
+      "deploy_title": "فوری تعیناتی",
+      "deploy_desc": "سیٹ اپ کی پریشانی کے بغیر سیکنڈ میں کسی بھی ماڈل کو استعمال کرنا شروع کریں",
+      "compare_title": "سمارٹ موازنے",
+      "compare_desc": "بہترین موافقت تلاش کرنے کے لیے ماڈلز کو شانہ بہ شانہ موازنہ کریں",
+      "build_title": "ایجنٹ بنانے والا",
+      "build_desc": "بصری workflowڈیزائن کے ساتھ طاقتور AI ایجنٹس بنائیں"
+    },
+    "testimonial": {
+      "quote": "NexusAI نے ہماری ماڈل تشخیص کے وقت کو ہفتوں سے گھنٹوں میں بدل دیا۔ صرف موازنہ کی خصوصیت نے ہمیں ترقی میں لاکھوں بچائے۔",
+      "author": "سارہ Chen",
+      "role": "Vercel میں AI کے سربراہ"
+    },
+    "badges": {
+      "signin_title": "ہب میں خوش آمدید",
+      "signup_title": "50,000+ ڈویلپرز میں شامل ہوں"
+    }
+  },
+  "modal": {
+    "tabs": {
+      "overview": "جائزہ",
+      "how_to_use": "استعمال کا طریقہ",
+      "pricing": "قیمت",
+      "prompt_guide": "Prompt گائیڈ",
+      "agents": "ایجنٹس",
+      "reviews": "تبصرے",
+      "create_agent": "ایجنٹ بنائیں"
+    },
+    "configure_agent": "نیا ایجنٹ تیار کریں",
+    "developing_agent_using": "استعمال کرتے ہوئے ایجنٹ تیار کریں"
+  },
+  "modelCard": {
+    "try": "کوشش کریں →"
+  },
+  "agents": {
+    "header_title": "ایجنٹ بنانے والا",
+    "header_subtitle": "کسی بھی ماڈل کو استعمال کرتے ہوئے طاقتور AI ایجنٹس بنائیں۔",
+    "sidebar_blurb": "کسی بھی ماڈل سے طاقتور AI ایجنٹس بنائیں۔ ٹیمپلیٹ منتخب کریں یا سرے سے شروع کریں۔",
+    "button_new_agent": "نیا ایجنٹ",
+    "hero_prefix": "ایجنٹ آپ کے لیے",
+    "hero_accent": "کام کرتا ہے۔",
+    "hero_sub": "آپ کا AI ایجنٹ آخر تک سب سنبھالتا ہے۔",
+    "search_placeholder": "اگلا ہم پر کیا کام کریں؟",
+    "search_send": "ہب پر بھیجیں",
+    "view_all_suggestions": "تمام تجاویز دیکھیں",
+    "shuffle": "شفل",
+    "my_agents": "میرے ایجنٹس",
+    "agent_library": "ایجنٹ لائبریری",
+    "library_sub": "ڈیفالٹ ایجنٹ منتخب کریں یا اپنا بنائیں",
+    "default_agents": "ڈیفالٹ ایجنٹس",
+    "create_custom": "اپنا ایجنٹ بنائیں",
+    "no_agents_title": "ابھی تک کوئی ایجنٹ نہیں۔",
+    "no_agents_hint": "شروع کرنے کے لیے اپنا پہلا ایجنٹ بنائیں!",
+    "delete_agent": "حذف کریں",
+    "agent_deleted": "ایجنٹ ہٹا دیا گیا",
+    "edit": "ترمیم",
+    "use_case_library": "استعمال کے کیسز",
+    "apps_count": "{{count}} خیالات",
+    "banner_title": "یقین نہیں کہاں سے شروع کریں؟",
+    "banner_description": "ہماری AI گائیڈ کے ساتھ چیٹ کریں - اپنے ایجنٹ کی تفصیل دیں اور ذاتی نوعیت کے سیٹ اپ کی منصوبہ حاصل کریں۔",
+    "banner_cta": "ہب سے پوچھیں →",
+    "templates_label": "ایجنٹ ٹیمپلیٹس",
+    "explore": {
+      "tabs": {
+        "use_cases": "استعمال کے کیسز",
+        "build_business": "کاروبار بنائیں",
+        "learn": "مدد سے سیکھیں",
+        "monitor": "صورتحال کی نگرانی",
+        "research": "تحقیق",
+        "create": "مواد بنائیں",
+        "analyze": "تجزیہ اور تحقیق"
+      }
+    },
+    "chat": {
+      "back_agents": "ایجنٹس",
+      "live": "لائیو",
+      "draft": "مسودہ",
+      "meta_tools": "ٹولز: {{tools}}",
+      "tools_none": "کوئی نہیں",
+      "meta_memory": "میموری: مختصر مدتی",
+      "settings": "ترتیبات",
+      "try_label": "کوشش:",
+      "try_1": "آپ کیا کر سکتے ہیں؟",
+      "try_2": "ایک مختصر خلاصہ دیں",
+      "try_3": "ایک مثال دکھائیں",
+      "try_4": "غلطیوں سے کیسے نپٹتے ہیں؟",
+      "try_5": "آپ کی حدود کیا ہیں؟",
+      "welcome": "👋 السلام علیکم! میں {{name}} ہوں — ایک طاقتور AI ایجنٹ۔ آج میں کیسے مدد کر سکتا ہوں؟",
+      "input_placeholder": "اپنا منصوبہ بیان کریں، سوال پوچھیں، یا صرف ہیلو کہیں — میں مدد کے لیے حاضر ہوں…",
+      "thinking": "سوچ رہا ہے…",
+      "send_error": "ایجنٹ تک نہیں پہنچ سکے۔ دوبارہ کوشش کریں۔",
+      "error_reply": "معذرت — یہ درخواست مکمل نہیں ہو سکی۔ دوبارہ کوشش کریں۔",
+      "coming_soon": "جلد آ رہا ہے",
+      "video": "ویڈیو",
+      "palette": "اشارے",
+      "footer_preview": "آپ کے تعینات شدہ ایجنٹ کا لائیو پیش منظر۔",
+      "edit_config": "ترتیب میں تبدیلی →",
+      "avatar_user": "U",
+      "attachments_only": "(صارف نے صرف منسلکات بھیجے۔)",
+      "prompt_voice_note": "صارف نے وائس ریکارڈنگ بھیجی۔ گویا کہ انہوں نے زبانی سوال پوچھا ہو، مددگار جواب دیں اور وائس نوٹ تسلیم کریں۔",
+      "prompt_video_note": "صارف نے ویڈیو منسلک کی۔ اسے تسلیم کریں اور عام فالو اپ کے لیے مدد پیش کریں۔",
+      "file_read_error": "مواد نہیں پڑھ سکے",
+      "prompt_image_note": "صارف نے تصویر منسلک کی۔ فائل نام سے جہاں ممکن ہو اندازہ لگائیں یا وضاحت کے لیے پوچھیں۔",
+      "file_too_large": "\"{{name}}\" بہت بڑی ہے (زیادہ سے زیادہ 10 MB)۔",
+      "max_attachments": "آپ {{n}} فائلز تک منسلک کر سکتے ہیں۔",
+      "record_unsupported": "اس براؤزر میں ریکارڈنگ سپورٹ نہیں۔",
+      "recorder_unsupported": "MediaRecorder دستیاب نہیں۔",
+      "voice_saved_attach": "وائس کلپ منسلکات میں شامل ہو گیا۔",
+      "record_failed": "ریکارڈنگ ناکام۔",
+      "recording_hint": "ریکارڈ ہو رہا ہے… رکنے کے لیے دوبارہ دبائیں۔",
+      "mic_denied": "مائیکروفون کی اجازت نہیں ملی۔",
+      "mic_missing": "کوئی مائیکروفون نہیں ملا۔",
+      "mic_error": "مائیکروفون تک رسائی ممکن نہیں۔",
+      "recording_stopped": "ریکارڈنگ رک گئی۔",
+      "voice_type_unsupported": "اس براؤزر میں وائس ٹائپنگ سپورٹ نہیں۔",
+      "voice_typing_on": "وائس ٹائپنگ آن ہے — واضح بولیں۔",
+      "voice_typing_fail": "وائس ٹائپنگ شروع نہیں ہو سکی۔",
+      "n_files_attached": "{{count}} فائل(یں) منسلک",
+      "stop_recording": "ریکارڈنگ بند کریں",
+      "prompt_tip_toast": "واضع رہیں: مقصد، سامعین، اور حدود۔ سیاق کے لیے فائلیں منسلک کریں۔"
+    },
+    "steps": {
+      "template": "ٹیمپلیٹ",
+      "template_desc": "ایجنٹ ٹیمپلیٹ منتخب کریں یا بنائیں",
+      "configure": "ترتیب دیں",
+      "configure_desc": "ٹولس، علم اور برتاؤ سیٹ اپ کریں",
+      "test": "ٹیسٹ کریں",
+      "test_desc": "نمونہ سوالات کے ساتھ اپنے ایجنٹ کو ٹیسٹ کریں",
+      "deploy": "تعینات کریں",
+      "deploy_desc": "اپنے ایجنٹ کو تعینات اور نگرانی کریں"
+    },
+    "tools": {
+      "web_search": "ویب تلاش",
+      "web_search_desc": "حقیقی وقت کی معلومات کے لیے انٹرنیٹ تلاش کریں",
+      "code_interpreter": "کوڈ انٹرپریٹر",
+      "code_interpreter_desc": "کوڈ snippets کو چلائیں اور ٹیسٹ کریں",
+      "file_access": "فائل تک رسائی",
+      "file_access_desc": "اپ لوڈ کردہ فائلوں کو پڑھیں اور پروسیس کریں",
+      "api_calls": "API کالز",
+      "api_calls_desc": "بیرونی APIs کے ساتھ انضمام کریں",
+      "memory": "میموری",
+      "memory_desc": "وقت گزرنے کے تناظر کو ذخیرہ اور حاصل کریں",
+      "scheduler": "شیڈولر",
+      "scheduler_desc": "بار بار کے کام اور workflows کو شیڈول کریں"
+    }
+  },
+  "marketplace": {
+    "header": "AI مارکیٹ پلیس",
+    "search_placeholder": "ماڈلز تلاش کریں...",
+    "filters": {
+      "all": "تمام",
+      "language": "زبان",
+      "vision": "بصری",
+      "code": "کوڈ",
+      "image_gen": "تصویر Generation",
+      "audio": "آڈیو",
+      "opensource": "اوپن سورس"
+    },
+    "coming_soon": {
+      "voice": "آواز کی تلاش - جلد آ رہا ہے",
+      "upload": "فائل اپ لوڈ - جلد آ رہا ہے"
+    }
+  },
+  "research": {
+    "header_title": "AI ریسرچ فیڈ",
+    "header_subtitle": "تازہ ترین papers، رہائی اور کامیابیاں۔",
+    "live_updates": "لائیو اپ ڈیٹس",
+    "discuss_in_chat": "چیٹ میں تبادلہ خیال کریں",
+    "newsletter_title": "AI کے بارے میں سب سے آگے رہیں",
+    "newsletter_desc": "AI تحقیق کا ہفتہ وار ڈائجسٹ۔",
+    "newsletter_placeholder": "aap@email.com",
+    "newsletter_subscribe": "سبسکرائب کریں"
+  }
+}
+
